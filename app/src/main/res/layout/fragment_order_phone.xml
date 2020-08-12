@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:background="@drawable/bg_edit_order"
+                android:hint="Tên của bạn"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1"
+                android:padding="@dimen/dp_15"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:background="@drawable/bg_edit_order"
+                android:hint="Số điện thoại (nếu có)"
+                android:inputType="phone"
+                android:lines="1"
+                android:maxLines="1"
+                android:padding="@dimen/dp_15"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:background="@drawable/bg_edit_order"
+                android:hint="Địa chỉ"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1"
+                android:padding="@dimen/dp_15"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:background="@drawable/bg_edit_order"
+                android:hint="Email (nếu có)"
+                android:inputType="textEmailAddress"
+                android:lines="1"
+                android:maxLines="1"
+                android:padding="@dimen/dp_15"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editProductCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:background="@drawable/bg_edit_order"
+                android:hint="Mã sản phẩm"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1"
+                android:padding="@dimen/dp_15"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:background="@drawable/bg_edit_order"
+                android:hint="Giá tiền"
+                android:lines="1"
+                android:maxLines="1"
+                android:padding="@dimen/dp_15"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvEditTakeTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:background="@drawable/bg_edit_order"
+                android:drawableEnd="@drawable/ic_icon_awesome_clock"
+                android:drawablePadding="@dimen/dp_10"
+                android:gravity="center_vertical"
+                android:hint="Giờ nhận"
+                android:paddingStart="@dimen/dp_15"
+                android:paddingTop="@dimen/dp_7"
+                android:paddingEnd="@dimen/dp_15"
+                android:paddingBottom="@dimen/dp_7"
+
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:justificationMode="inter_word"
+                android:text="@string/thanks_from_fonehouse"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_17" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/tvHotLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Mọi thắc mắc xin liên hệ Hotline:"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/sp_13" />
+
+                <TextView
+                    android:id="@+id/tvDetailHotLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_3"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="06-6537-7297"
+                    android:textColor="@color/color_indigo_de608c"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/sp_13"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonSend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:background="@drawable/bg_rounded_primary"
+                android:fontFamily="@font/roboto_bold"
+                android:text="GỬI THÔNG TIN ĐẶT HÀNG"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_20" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

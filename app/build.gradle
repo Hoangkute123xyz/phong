@@ -1,0 +1,136 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'androidx.navigation.safeargs'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_1_8.toString()
+  }
+  compileSdkVersion androidCompileSdkVersion
+  defaultConfig {
+    applicationId "vn.hexagon.vietnhat"
+    minSdkVersion androidMinSdkVersion
+    targetSdkVersion androidTargetSdkVersion
+    versionCode 13
+    versionName "1.0.9"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    resConfigs "en", "vi", "ja"
+  }
+  buildTypes {
+    release {
+      minifyEnabled true
+      shrinkResources true
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+  dataBinding {
+    enabled = true
+  }
+}
+
+dependencies {
+  // Default
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  implementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
+  implementation "androidx.core:core-ktx:$androidXCoreKTXVersion"
+  implementation constraintLayoutDependency
+
+  // JetPack dependencies
+  implementation androidXDependencies.lifeCycleRuntime
+  implementation androidXDependencies.lifeCycleExtension
+  implementation androidXDependencies.room
+  implementation androidXDependencies.roomRxJava
+  kapt androidXDependencies.roomCompiler
+
+  implementation androidXDependencies.navigationFragment
+  implementation androidXDependencies.navigationUI
+
+  implementation androidXDependencies.pager
+
+  implementation androidXDependencies.paging
+  implementation androidXDependencies.pagingRxJava
+  // JetPack dependencies
+
+  // Dependencies Injection
+  implementation daggerDependencies.dagger
+  implementation daggerDependencies.daggerAndroid
+  implementation daggerDependencies.daggerSupportAndroid
+  kapt daggerDependencies.daggerAnnotation
+  kapt daggerDependencies.daggerAndroidProcessor
+  // Dependencies Injection
+
+  // Network dependencies
+  implementation networkDependencies.retrofit
+  implementation networkDependencies.retrofitGsonConverter
+  implementation networkDependencies.retrofitRxJava
+  implementation networkDependencies.logging
+  // Network dependencies
+
+  // Rx
+  implementation rxDependencies.rxJava
+  implementation rxDependencies.rxAndroid
+  // Rx
+
+  //Glide
+  implementation glideDependency.runtime
+  kapt glideDependency.compiler
+
+  // Country Code Picker
+  implementation countryCdPicker
+  // Gmc
+  implementation googlePlayService
+  // Facebook SDK
+  implementation facebookSdk
+  // Easy Permission
+  implementation easyPermission
+  // Place
+  implementation googlePlace
+  // Swipe layout
+  implementation swipeLayout
+  // Fire base
+  implementation firebaseMsg
+  implementation firebaseAnalyze
+  // Play core
+  implementation playCore
+  // Zoom in Zoom out
+  implementation zoomage
+  // Stripe
+  implementation stripe
+  // VersionedParcelable
+  implementation versionedParcelable
+
+  implementation 'com.makeramen:roundedimageview:2.3.0'
+
+  implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+  //SocketIO
+  implementation(socketIODependency) {
+    exclude group: 'org.json', module: 'json'
+  }
+  //circle image view
+  implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+  //image picker
+  implementation 'com.github.nguyenhoanglam:ImagePicker:1.4.0'
+
+  // Test dependencies
+  testImplementation 'junit:junit:4.12'
+  androidTestImplementation 'androidx.test:runner:1.2.0'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+  implementation 'androidx.work:work-runtime:2.2.0'
+
+  //photoview
+  implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+}
+apply plugin: 'com.google.gms.google-services'

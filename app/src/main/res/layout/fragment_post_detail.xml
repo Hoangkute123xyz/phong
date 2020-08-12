@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="vn.hexagon.vietnhat.data.model.post.Post" />
+
+        <import type="android.view.View" />
+
+        <import type="androidx.lifecycle.LiveData" />
+
+        <variable
+            name="viewmodel"
+            type="vn.hexagon.vietnhat.ui.detail.PostDetailViewModel" />
+
+        <variable
+            name="post"
+            type="LiveData&lt;Post>" />
+
+        <variable
+            name="user"
+            type="vn.hexagon.vietnhat.data.model.auth.User" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/postDetailParent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dp_16">
+
+            <ImageView
+                android:id="@+id/postDetailTopIcon"
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_7"
+                android:layout_marginEnd="@dimen/dp_6"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_top"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/barrier5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/postDetailTitle"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/postDetailTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@{viewmodel.detailPostResponse.data.title}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/barrier5"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Tuyển người giúp việc tại nhà, dọn dẹp nhà, trông trẻ, nấu ăn" />
+
+            <ImageView
+                android:id="@+id/postDetailAvatar"
+                imageAvatar="@{viewmodel.detailPostResponse.data.userAvatar}"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="@dimen/dp_12"
+                android:background="@drawable/shape_circle_layout"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/postDetailTitle" />
+
+            <TextView
+                android:id="@+id/postListDetailDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_4"
+                android:layout_toEndOf="@+id/postDetailAvatar"
+                android:includeFontPadding="false"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintBottom_toBottomOf="@+id/postDetailAvatar"
+                app:layout_constraintStart_toEndOf="@+id/postDetailAvatar"
+                app:layout_constraintTop_toTopOf="@+id/postDetailAvatar"
+                tools:ignore="RelativeOverlap"
+                tools:text="VuNBT  -  20/11/2019" />
+
+            <TextView
+                android:id="@+id/titlePostDetailFavBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:text="@string/text_like"
+                android:textColor="@color/FF0000"
+                android:textSize="@dimen/sp_14"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/postDetailFavBtn"
+                app:layout_constraintEnd_toStartOf="@+id/postDetailFavBtn"
+                app:layout_constraintTop_toTopOf="@+id/postDetailFavBtn"
+                tools:ignore="MissingConstraints" />
+
+            <ImageButton
+                android:id="@+id/postDetailFavBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@null"
+                android:padding="@dimen/dp_4"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/postDetailAvatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/postDetailAvatar"
+                tools:src="@drawable/ic_save"
+                tools:visibility="visible" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/detailInfinityCard"
+                android:layout_width="0dp"
+                android:layout_height="190dp"
+                android:layout_marginTop="@dimen/dp_26"
+                app:cardCornerRadius="@dimen/dp_6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detailCallBtn">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/detailInfinityPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:id="@+id/homeInfinityIndicator"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/dp_5"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="@+id/detailInfinityPager"
+                        app:layout_constraintEnd_toStartOf="@id/commentCtl"
+                        app:layout_constraintStart_toStartOf="@+id/detailInfinityPager" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/commentCtl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_white_normal_bg"
+                        android:padding="@dimen/dp_10"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:id="@+id/postDetailCmtLink"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_16"
+                            android:drawableStart="@drawable/ic_comment_count"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:text="@string/comment_title"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="MissingConstraints" />
+
+                        <TextView
+                            android:id="@+id/postDetailFavLink"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_16"
+                            android:layout_marginEnd="@dimen/dp_8"
+                            android:drawableStart="@drawable/ic_like_count"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:text="@string/like_title_default"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintEnd_toStartOf="@+id/postDetailCmtLink"
+                            tools:ignore="MissingConstraints" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/detailMsgBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:drawableStart="@drawable/ic_make_messager"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="@string/title_make_messager"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sp_13"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/detailCallBtn"
+                app:layout_constraintTop_toBottomOf="@+id/postDetailAvatar" />
+
+            <TextView
+                android:id="@+id/detailCallBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:drawableStart="@drawable/ic_phone_call"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="@string/title_make_phone_call"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sp_13"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/postDetailAvatar" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                app:cardCornerRadius="@dimen/dp_6"
+                app:layout_constraintTop_toBottomOf="@id/detailInfinityCard">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_10">
+
+                    <TextView
+                        android:id="@+id/detailGmapBtn"
+                        style="@style/WhiteButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_40"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@null"
+                        android:drawableStart="@drawable/ic_show_map"
+                        android:drawablePadding="@dimen/dp_10"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/dp_5"
+                        android:paddingEnd="@dimen/dp_5"
+                        android:text="Chỉ đường"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/postDetailJobAddress"
+                        style="@style/LabelDialogStyle"
+                        android:layout_marginTop="0dp"
+                        android:includeFontPadding="false"
+                        android:text="Địa chỉ"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/detailGmapBtn"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/detailGmapBtn"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/postDetailAddress"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:text="@{viewmodel.detailPostResponse.data.address}"
+                        android:textColor="@color/color_grey_9b9b9b"
+                        android:textSize="@dimen/sp_12"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/detailGmapBtn"
+                        app:layout_constraintEnd_toStartOf="@id/detailGmapBtn"
+                        app:layout_constraintStart_toEndOf="@id/postDetailJobAddress"
+                        app:layout_constraintTop_toTopOf="@id/detailGmapBtn"
+                        tools:text="address"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/postDetailSubject"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:textColor="@color/color_grey_9b9b9b"
+                        android:textSize="@dimen/sp_12"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/detailGmapBtn"
+                        tools:text="subject"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/titlePostDetailJobType"
+                        style="@style/LabelDialogStyle"
+                        android:includeFontPadding="false"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/postDetailSubject"
+                        tools:text="job type" />
+
+                    <TextView
+                        android:id="@+id/postDetailJobType"
+                        style="@style/LabelDialogStyle"
+                        android:layout_marginStart="@dimen/dp_3"
+                        android:includeFontPadding="false"
+                        android:textColor="@android:color/black"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toEndOf="@+id/titlePostDetailJobType"
+                        app:layout_constraintTop_toBottomOf="@+id/postDetailSubject"
+                        tools:text="job type"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/titlePostDetailJobCategory"
+                        style="@style/LabelDialogStyle"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:includeFontPadding="false"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/postDetailJobType"
+                        tools:text="job category"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/postDetailJobCategory"
+                        style="@style/LabelDialogStyle"
+                        android:layout_marginStart="@dimen/dp_3"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:includeFontPadding="false"
+                        android:textColor="@android:color/black"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toEndOf="@+id/titlePostDetailJobCategory"
+                        app:layout_constraintTop_toBottomOf="@+id/postDetailJobType"
+                        tools:text="job category"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/titlePostDetailPhone"
+                        style="@style/LabelDialogStyle"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:includeFontPadding="false"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/postDetailJobCategory"
+                        tools:text="phone"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/postDetailPhone"
+                        style="@style/LabelDialogStyle"
+                        android:layout_marginStart="@dimen/dp_3"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:includeFontPadding="false"
+                        android:textColor="@android:color/black"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toEndOf="@+id/titlePostDetailPhone"
+                        app:layout_constraintTop_toBottomOf="@+id/postDetailJobCategory"
+                        tools:text="phone"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/postDetailContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:layout_marginEnd="@dimen/dp_16"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="@{viewmodel.detailPostResponse.data.content}"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/postDetailPhone"
+                        tools:text="content" />
+
+                    <TextView
+                        android:id="@+id/detailPostPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:fontFamily="@font/roboto_bold"
+                        android:includeFontPadding="false"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/postDetailContent"
+                        tools:ignore="RelativeOverlap"
+                        tools:text="20.000.000 VNĐ/ngày" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <View
+                android:id="@+id/detailDivider2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardDetail" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                app:cardCornerRadius="@dimen/dp_6"
+                app:layout_constraintTop_toBottomOf="@+id/detailDivider2">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingEnd="@dimen/dp_20"
+                    android:paddingBottom="@dimen/dp_10">
+
+                    <TextView
+                        android:id="@+id/postDetailNoteIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@null"
+                        android:text="@string/note_lbl"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/postDetailNote"
+                        style="@style/LabelDialogStyle"
+                        android:layout_width="0dp"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/postDetailNoteIcon"
+                        tools:text="note" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!--List Products-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvItemList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                app:cardCornerRadius="@dimen/dp_6"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardNote">
+
+                <RelativeLayout
+                    android:id="@+id/detailProductListArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:clipToPadding="false"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_24">
+
+                    <TextView
+                        android:id="@+id/detailProductLbl"
+                        style="@style/LabelDialogStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/product_lbl"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/detailProductViewAllLink"
+                        style="@style/LabelDialogStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/dp_16"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="@string/reveal_all_product_link"
+                        android:textColor="@android:color/black"
+                        android:visibility="gone"
+                        tools:ignore="RelativeOverlap"
+                        tools:visibility="visible" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/detailItemRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/detailProductLbl"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:nestedScrollingEnabled="false"
+                        tools:listitem="@layout/product_detail_item_layout" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="end"
+                app:constraint_referenced_ids="postDetailTopIcon"
+                tools:layout_editor_absoluteX="379dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="androidx.lifecycle.LiveData" />
+
+        <import type="vn.hexagon.vietnhat.data.model.fone.FoneDetailResponse" />
+
+        <variable
+            name="viewmodel"
+            type="vn.hexagon.vietnhat.ui.list.phone.FoneHouseDetailViewModel" />
+    </data>
+
+    <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/foneDetailInfinityPager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_240"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/detailInfinityIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/detailInfinityPager"
+                tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/tvProductName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="@{viewmodel.foneDetailResponse.data.name.trim() + ' ' + viewmodel.foneDetailResponse.data.memory}"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tvCode"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/foneDetailInfinityPager" />
+
+            <TextView
+                android:id="@+id/tvCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_12"
+                android:text="@{viewmodel.foneDetailResponse.data.code}"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/tvProductName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvProductName" />
+
+            <TextView
+                android:id="@+id/tvTitleCapacityOverview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="Dung lượng:"
+                android:visibility="gone"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintStart_toStartOf="@id/tvProductName"
+                app:layout_constraintTop_toBottomOf="@id/tvProductName" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvMemory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_3"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="@{viewmodel.foneDetailResponse.data.memory}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintEnd_toStartOf="@id/tvPrice"
+                app:layout_constraintStart_toEndOf="@id/tvTitleCapacityOverview"
+                app:layout_constraintTop_toBottomOf="@id/tvProductName" />
+
+            <TextView
+                android:id="@+id/tvTitleMachineStatusAbove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="Tình trạng máy:"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintStart_toStartOf="@id/tvTitleCapacityOverview"
+                app:layout_constraintTop_toBottomOf="@id/tvTitleCapacityOverview" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_3"
+                android:text="@{viewmodel.foneDetailResponse.data.status}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginTop="@dimen/dp_5"
+                app:layout_constraintEnd_toStartOf="@id/tvPrice"
+                app:layout_constraintStart_toEndOf="@id/tvTitleMachineStatusAbove"
+                app:layout_constraintTop_toBottomOf="@id/tvMemory" />
+
+            <TextView
+                android:id="@+id/tvTitleWarrantyOverview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thời gian bảo hành:"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintStart_toStartOf="@id/tvTitleMachineStatusAbove"
+                app:layout_constraintTop_toBottomOf="@id/tvTitleMachineStatusAbove" />
+
+            <TextView
+                android:id="@+id/tvWarranty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_3"
+                android:text="@{viewmodel.foneDetailResponse.data.warrant}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintEnd_toStartOf="@id/tvPrice"
+                app:layout_constraintStart_toEndOf="@id/tvTitleWarrantyOverview"
+                app:layout_constraintTop_toBottomOf="@id/tvStatus" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="@dimen/dp_15"
+                android:text="@{viewmodel.foneDetailResponse.data.price}"
+                android:textColor="#FF0000"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@id/tvOldPrice"
+                app:layout_constraintTop_toTopOf="@id/tvWarranty" />
+
+            <TextView
+                android:id="@+id/tvOldPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_15"
+                android:gravity="end"
+                android:text="@{viewmodel.foneDetailResponse.data.priceDiscount}"
+                android:textSize="7sp"
+                app:layout_constraintBottom_toBottomOf="@id/tvPrice"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/color_grey_9b9b9b"
+                android:visibility="@{viewmodel.lineVisible}"
+                app:layout_constraintBottom_toBottomOf="@id/tvOldPrice"
+                app:layout_constraintEnd_toEndOf="@id/tvOldPrice"
+                app:layout_constraintStart_toStartOf="@id/tvOldPrice"
+                app:layout_constraintTop_toTopOf="@id/tvOldPrice" />
+
+
+            <View
+                android:id="@+id/viewLine"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_15"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:background="@android:color/black"
+                app:layout_constraintTop_toBottomOf="@id/tvWarranty" />
+
+            <TextView
+                android:id="@+id/tvNumberFavourite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_10"
+                android:drawableStart="@drawable/ic_like_count"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="@{viewmodel.foneDetailResponse.data.numberFavourite}"
+                android:textColor="#FF0000"
+                android:textSize="@dimen/sp_17"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewLine" />
+
+            <TextView
+                android:id="@+id/tvNumberComments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_10"
+                android:drawableStart="@drawable/ic_comment_count"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="@{viewmodel.foneDetailResponse.data.numberComment}"
+                android:textColor="#00B4CD"
+                android:textSize="@dimen/sp_17"
+                app:layout_constraintStart_toEndOf="@id/tvNumberFavourite"
+                app:layout_constraintTop_toBottomOf="@id/viewLine" />
+
+            <TextView
+                android:id="@+id/tvMessenger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/bg_rounded_border"
+                android:drawableStart="@drawable/ic_facebook_messenger"
+                android:drawablePadding="@dimen/dp_5"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp_5"
+                android:paddingTop="7dp"
+                android:paddingEnd="@dimen/dp_5"
+                android:paddingBottom="7dp"
+                android:text="Messenger"
+                android:textSize="7sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@id/tvStartMessage"
+                app:layout_constraintStart_toEndOf="@id/tvNumberComments"
+                app:layout_constraintTop_toTopOf="@id/tvNumberFavourite" />
+
+            <TextView
+                android:id="@+id/tvStartMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounder_detail_console"
+                android:drawableStart="@drawable/ic_start_message"
+                android:drawablePadding="@dimen/dp_5"
+                android:paddingStart="@dimen/dp_5"
+                android:paddingTop="7dp"
+                android:paddingEnd="@dimen/dp_5"
+                android:paddingBottom="7dp"
+                android:text="NHẮN TIN"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dp_7"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tvStartCall"
+                app:layout_constraintStart_toEndOf="@id/tvMessenger"
+                app:layout_constraintTop_toTopOf="@id/tvMessenger" />
+
+            <TextView
+                android:id="@+id/tvStartCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounder_detail_console"
+                android:drawableStart="@drawable/ic_small_phone_white"
+                android:drawablePadding="@dimen/dp_5"
+                android:paddingStart="@dimen/dp_5"
+                android:paddingTop="7dp"
+                android:paddingEnd="@dimen/dp_5"
+                android:paddingBottom="7dp"
+                android:text="GỌI ĐIỆN"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dp_7"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tvBuy"
+                app:layout_constraintStart_toEndOf="@id/tvStartMessage"
+                app:layout_constraintTop_toTopOf="@id/tvMessenger" />
+
+            <TextView
+                android:id="@+id/tvBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounder_detail_console"
+                android:drawableStart="@drawable/ic_cart"
+                android:drawablePadding="@dimen/dp_5"
+                android:paddingStart="@dimen/dp_5"
+                android:paddingTop="7dp"
+                android:paddingEnd="@dimen/dp_5"
+                android:paddingBottom="7dp"
+                android:text="ĐẶT MUA"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dp_7"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvStartCall"
+                app:layout_constraintTop_toTopOf="@id/tvMessenger" />
+
+
+            <TextView
+                android:id="@+id/tvProductDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="Thông tin chi tiết sản phẩm"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_17"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvStartMessage" />
+
+            <TextView
+                android:id="@+id/tvTitleDetailProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_7"
+                android:text="Tên sản phẩm:"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintStart_toStartOf="@id/tvProductDetail"
+                app:layout_constraintTop_toBottomOf="@id/tvProductDetail" />
+
+            <TextView
+                android:id="@+id/tvDetailProductName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_2"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:text="@{viewmodel.foneDetailResponse.data.name}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvTitleDetailProductName"
+                app:layout_constraintTop_toTopOf="@id/tvTitleDetailProductName" />
+
+            <TextView
+                android:id="@+id/tvTitleCapacity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_7"
+                android:text="Dung lượng:"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintStart_toStartOf="@id/tvTitleDetailProductName"
+                app:layout_constraintTop_toBottomOf="@id/tvDetailProductName" />
+
+            <TextView
+                android:id="@+id/tvCapacity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_2"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:text="@{viewmodel.foneDetailResponse.data.memory}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvTitleCapacity"
+                app:layout_constraintTop_toTopOf="@id/tvTitleCapacity" />
+
+            <TextView
+                android:id="@+id/tvTitleMachineStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_7"
+                android:text="Tình trạng máy:"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintStart_toStartOf="@id/tvTitleCapacity"
+                app:layout_constraintTop_toBottomOf="@id/tvCapacity" />
+
+            <TextView
+                android:id="@+id/tvMachineStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_2"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:text="@{viewmodel.foneDetailResponse.data.status}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvTitleMachineStatus"
+                app:layout_constraintTop_toTopOf="@id/tvTitleMachineStatus" />
+
+            <TextView
+                android:id="@+id/tvTitleDetailedDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_7"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:text="Mô tả chi tiết:"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintStart_toStartOf="@id/tvTitleMachineStatus"
+                app:layout_constraintTop_toBottomOf="@id/tvMachineStatus" />
+
+            <TextView
+                android:id="@+id/tvDetailedDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_2"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:text="@{viewmodel.foneDetailResponse.data.descript}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvTitleDetailedDescription"
+                app:layout_constraintTop_toTopOf="@id/tvTitleDetailedDescription" />
+
+            <TextView
+                android:id="@+id/tvTitleWarranty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_7"
+                android:text="Thời gian bảo hành:"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintStart_toStartOf="@id/tvTitleDetailedDescription"
+                app:layout_constraintTop_toBottomOf="@id/tvDetailedDescription" />
+
+            <TextView
+                android:id="@+id/tvWarrantyTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_2"
+                android:text="@{viewmodel.foneDetailResponse.data.warrant}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_13"
+                android:layout_marginEnd="@dimen/dp_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvTitleWarranty"
+                app:layout_constraintTop_toTopOf="@id/tvTitleWarranty" />
+
+            <TextView
+                android:id="@+id/tvTitleDetailPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="Giá tiền:"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintStart_toStartOf="@id/tvTitleWarranty"
+                app:layout_constraintTop_toBottomOf="@id/tvWarrantyTime" />
+
+            <TextView
+                android:id="@+id/tvDetailPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_2"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:text="@{viewmodel.foneDetailResponse.data.price}"
+                android:textColor="#FF0000"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvTitleDetailPrice"
+                app:layout_constraintBottom_toBottomOf="@id/tvTitleDetailPrice" />
+
+            <TextView
+                android:id="@+id/tvTitleAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_7"
+                android:text="Địa chỉ:"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintStart_toStartOf="@id/tvTitleDetailPrice"
+                app:layout_constraintTop_toBottomOf="@id/tvTitleDetailPrice" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_2"
+                android:layout_marginEnd="@dimen/dp_15"
+                android:text="@{viewmodel.foneDetailResponse.data.address}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintEnd_toStartOf="@id/tvShowAddress"
+                app:layout_constraintStart_toEndOf="@id/tvTitleAddress"
+                app:layout_constraintTop_toTopOf="@id/tvTitleAddress" />
+
+            <TextView
+                android:id="@+id/tvShowAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:background="@drawable/bg_rounded_border"
+                android:drawableStart="@drawable/ic_location_on"
+                android:drawablePadding="@dimen/dp_5"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp_7"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingEnd="@dimen/dp_7"
+                android:paddingBottom="@dimen/dp_5"
+                android:text="Chỉ đường"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/tvAddress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvAddress" />
+
+            <TextView
+                android:id="@+id/tvTitleContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_7"
+                android:text="Liên hệ:"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintStart_toStartOf="@id/tvTitleAddress"
+                app:layout_constraintTop_toBottomOf="@id/tvTitleAddress" />
+
+            <TextView
+                android:id="@+id/tvContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_2"
+                android:text="@{viewmodel.foneDetailResponse.data.contact}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintStart_toEndOf="@id/tvTitleContact"
+                app:layout_constraintTop_toTopOf="@id/tvTitleContact" />
+
+            <TextView
+                android:id="@+id/tvTitleHowToBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_7"
+                android:text="Cách thức mua hàng:"
+                android:textColor="#DE608C"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintStart_toStartOf="@id/tvTitleContact"
+                app:layout_constraintTop_toBottomOf="@id/tvContact" />
+
+            <TextView
+                android:id="@+id/tvHowToBuy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:text="@string/text_how_to_buy"
+                android:textColor="@android:color/black"
+                android:textIsSelectable="true"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintTop_toBottomOf="@id/tvTitleHowToBuy"
+                app:layout_goneMarginStart="@dimen/dp_20" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_15"
+                app:layout_constraintTop_toBottomOf="@id/tvHowToBuy" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/navHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/foneBottomNavigation"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/fone_nav_grap" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/foneBottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="@color/color_white_fafafa"
+            app:itemBackground="@drawable/selector_navigation_bottom_bg"
+            app:itemIconTint="@null"
+            app:itemTextColor="@drawable/selector_navigation_bottom"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/fone_place_bottom_menu" />
+    </RelativeLayout>
+</layout>

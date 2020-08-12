@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/favUnLoginArea"
+            layout="@layout/fragment_unlogin_common"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/imageThumb"
+                    android:layout_width="match_parent"
+                    android:layout_height="152dp"
+                    android:layout_marginStart="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:layout_marginEnd="@dimen/dp_15"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_guide"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:riv_corner_radius="@dimen/dp_10" />
+
+                <TextView
+                    android:id="@+id/tvTitleCommunity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingStart="@dimen/dp_20"
+                    android:paddingEnd="@dimen/dp_20"
+                    android:text="Cộng đồng VietGroup"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/dp_16"
+                    app:layout_constraintTop_toBottomOf="@id/imageThumb" />
+
+
+                <ImageView
+                    android:id="@+id/imageCommunity"
+                    android:layout_width="@dimen/dp_50"
+                    android:layout_height="@dimen/dp_50"
+                    android:layout_marginStart="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@drawable/bg_circle_white"
+                    tools:src="@drawable/ic_item_social"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleCommunity" />
+
+                <TextView
+                    android:id="@+id/tvSummary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:text="Cộng đồng VietGroup"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/tvLastContent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imageCommunity"
+                    app:layout_constraintTop_toTopOf="@id/imageCommunity" />
+
+                <TextView
+                    android:id="@+id/tvLastContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:singleLine="true"
+                    android:textColor="@android:color/darker_gray"
+                    app:layout_constraintBottom_toBottomOf="@id/imageCommunity"
+                    app:layout_constraintStart_toStartOf="@id/tvSummary"
+                    app:layout_constraintTop_toBottomOf="@id/tvSummary"
+                    tools:text="Content " />
+
+                <View
+                    android:id="@+id/viewLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginEnd="20dp"
+                    android:background="@android:color/darker_gray"
+                    app:layout_constraintTop_toBottomOf="@id/imageCommunity" />
+
+              <TextView
+                  android:id="@+id/tvTitleRoom"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/dp_15"
+                  android:fontFamily="@font/roboto_bold"
+                  android:paddingStart="@dimen/dp_20"
+                  android:paddingEnd="@dimen/dp_20"
+                  android:text="Room chat"
+                  android:textColor="@color/colorPrimary"
+                  android:textSize="@dimen/dp_16"
+                  app:layout_constraintTop_toBottomOf="@id/viewLine" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/chatListRecycler"
+                    style="@style/scrollbar_style"
+                    android:layout_width="match_parent"
+                    tools:listitem="@layout/item_chat_list"
+                    android:layout_height="0dp"
+                    android:paddingLeft="@dimen/margin_default"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleRoom" >
+
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <data>
+
+    </data>
+</layout>

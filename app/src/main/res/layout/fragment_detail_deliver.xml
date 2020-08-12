@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="vn.hexagon.vietnhat.ui.detail.PostDetailViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/deliverDetailParent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_16"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:id="@+id/deliverDetailServiceName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Tìm Việc" />
+
+
+            <ImageView
+                android:id="@+id/deliverDetailTop"
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_15"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:contentDescription="@null"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/barrier4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deliverDetailServiceName"
+                app:srcCompat="@drawable/ic_top"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/deliverDetailTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/barrier4"
+                app:layout_constraintTop_toBottomOf="@+id/deliverDetailServiceName"
+                tools:text="Tuyển người giúp việc tại nhà, dọn dẹp nhà, trông trẻ, nấu ăn" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="right"
+                app:constraint_referenced_ids="deliverDetailTop"
+                tools:layout_editor_absoluteX="26dp" />
+
+            <ImageView
+                android:id="@+id/deliverDetailAvatar"
+                imageAvatar="@{viewmodel.detailPostResponse.data.userAvatar}"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:layout_marginTop="@dimen/dp_12"
+                android:background="@drawable/shape_circle_layout"
+                android:contentDescription="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deliverDetailTitle" />
+
+            <TextView
+                android:id="@+id/deliverDetailDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_4"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintBottom_toBottomOf="@+id/deliverDetailAvatar"
+                app:layout_constraintStart_toEndOf="@+id/deliverDetailAvatar"
+                app:layout_constraintTop_toTopOf="@+id/deliverDetailAvatar"
+                tools:text="VuNBT  -  20/11/2019" />
+
+            <TextView
+                android:id="@+id/titlePostDetailFavBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:text="@string/text_like"
+                android:textColor="@color/FF0000"
+                android:textSize="@dimen/sp_14"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/deliverDetailFavBtn"
+                app:layout_constraintEnd_toStartOf="@+id/deliverDetailFavBtn"
+                app:layout_constraintTop_toTopOf="@+id/deliverDetailFavBtn"
+                tools:ignore="MissingConstraints" />
+
+            <ImageButton
+                android:id="@+id/deliverDetailFavBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@null"
+                android:padding="@dimen/dp_4"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/deliverDetailAvatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/deliverDetailAvatar"
+                tools:src="@drawable/ic_save"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/deliverDetailMsgBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:drawableStart="@drawable/ic_make_messager"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="@string/title_make_messager"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sp_13"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/deliverDetailCallBtn"
+                app:layout_constraintTop_toBottomOf="@+id/deliverDetailAvatar" />
+
+            <TextView
+                android:id="@+id/deliverDetailCallBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:drawableStart="@drawable/ic_phone_call"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="@string/title_make_phone_call"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sp_13"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deliverDetailAvatar" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/detailInfinityCard"
+                android:layout_width="0dp"
+                android:layout_height="190dp"
+                android:layout_marginTop="@dimen/dp_26"
+                app:cardCornerRadius="@dimen/dp_6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deliverDetailCallBtn">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/deliverDetailPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:id="@+id/homeInfinityIndicator"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/dp_5"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="@+id/deliverDetailPager"
+                        app:layout_constraintEnd_toStartOf="@id/commentCtl"
+                        app:layout_constraintStart_toStartOf="@+id/deliverDetailPager" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/commentCtl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_white_normal_bg"
+                        android:padding="@dimen/dp_10"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:id="@+id/deliverDetailCmtLink"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_16"
+                            android:drawableStart="@drawable/ic_comment_count"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:text="@string/comment_title"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="MissingConstraints" />
+
+                        <TextView
+                            android:id="@+id/deliverDetailFavLink"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_16"
+                            android:layout_marginEnd="@dimen/dp_8"
+                            android:drawableStart="@drawable/ic_like_count"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:text="@string/like_title_default"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintEnd_toStartOf="@+id/deliverDetailCmtLink"
+                            tools:ignore="MissingConstraints" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/detailPostPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/sp_14"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/deliverDetailMsgBtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/deliverDetailMsgBtn"
+                tools:ignore="RelativeOverlap"
+                tools:text="20.000.000 VNĐ/ngày" />
+
+            <View
+                android:id="@+id/detailDivider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_16"
+                android:background="@color/color_divider"
+                app:layout_constraintTop_toBottomOf="@+id/detailInfinityCard"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                app:layout_constraintTop_toBottomOf="@+id/detailDivider">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_12">
+
+                    <TextView
+                        android:id="@+id/detailRoadType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="MissingConstraints"
+                        tools:text="Nhat - Viet" />
+
+                    <TextView
+                        android:id="@+id/detailTakenSpotLbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_4"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:fontFamily="@font/roboto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/deliver_taken_spot"
+                        android:textColor="@color/color_pink_d14b79"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@id/detailRoadType"
+                        tools:ignore="MissingConstraints" />
+
+
+                    <TextView
+                        android:id="@+id/detailTakenAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:layout_marginEnd="@dimen/dp_16"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="start"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/detailTakenSpotLbl"
+                        app:layout_constraintStart_toEndOf="@id/detailTakenSpotLbl"
+                        app:layout_constraintTop_toTopOf="@id/detailTakenSpotLbl"
+                        tools:text="Some where" />
+
+                    <TextView
+                        android:id="@+id/detailReceiveSpotLbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginEnd="@dimen/dp_8"
+                        android:fontFamily="@font/roboto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/detail_receive_spot"
+                        android:textColor="@color/color_pink_d14b79"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/icArrow"
+                        app:layout_constraintStart_toEndOf="@id/icArrow"
+                        app:layout_constraintTop_toTopOf="@id/icArrow" />
+
+                    <TextView
+                        android:id="@+id/detailReceiveAddress"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="start"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/icArrow"
+                        app:layout_constraintStart_toEndOf="@id/detailReceiveSpotLbl"
+                        app:layout_constraintTop_toTopOf="@+id/icArrow"
+                        tools:text="Some where" />
+
+                    <ImageView
+                        android:id="@+id/icArrow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:src="@drawable/ic_navigate"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/detailTakenAddress"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/titleDetailReceiveAddress"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="start"
+                        android:text="Loại hàng:"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@+id/detailReceiveAddress"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/detailProductType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_3"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintBottom_toBottomOf="@id/titleDetailReceiveAddress"
+                        app:layout_constraintStart_toEndOf="@id/titleDetailReceiveAddress"
+                        app:layout_constraintTop_toTopOf="@id/titleDetailReceiveAddress"
+                        tools:ignore="MissingConstraints"
+                        tools:text="Type" />
+
+                    <TextView
+                        android:id="@+id/titleDetailProductWeight"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="start"
+                        android:text="Cân nặng:"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@+id/titleDetailReceiveAddress"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/detailProductWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_3"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintBottom_toBottomOf="@id/titleDetailProductWeight"
+                        app:layout_constraintStart_toEndOf="@id/titleDetailProductWeight"
+                        app:layout_constraintTop_toTopOf="@id/titleDetailProductWeight"
+                        tools:ignore="MissingConstraints"
+                        tools:text="weight" />
+
+
+                    <TextView
+                        android:id="@+id/titleDetailPhone"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="start"
+                        android:text="Số điện thoại:"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@+id/titleDetailProductWeight"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/detailPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_3"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintBottom_toBottomOf="@id/titleDetailPhone"
+                        app:layout_constraintStart_toEndOf="@id/titleDetailPhone"
+                        app:layout_constraintTop_toBottomOf="@+id/detailProductWeight"
+                        app:layout_constraintTop_toTopOf="@id/titleDetailPhone"
+                        tools:ignore="MissingConstraints"
+                        tools:text="phone" />
+
+                    <TextView
+                        android:id="@+id/titleDetailCompName"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="start"
+                        android:text="Tên công ty:"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@+id/titleDetailPhone"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/detailCompName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_3"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintBottom_toBottomOf="@id/titleDetailCompName"
+                        app:layout_constraintStart_toEndOf="@id/titleDetailCompName"
+                        app:layout_constraintTop_toTopOf="@id/titleDetailCompName"
+                        tools:ignore="MissingConstraints"
+                        tools:text="company name" />
+
+                    <View
+                        android:id="@+id/detailDivider2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_1"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:background="@color/color_divider"
+                        app:layout_constraintTop_toBottomOf="@+id/titleDetailCompName" />
+
+                    <TextView
+                        android:id="@+id/note_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:contentDescription="@null"
+                        android:text="Note"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/detailDivider2" />
+
+                    <TextView
+                        android:id="@+id/detailNote"
+                        style="@style/LabelDialogStyle"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:layout_marginBottom="@dimen/dp_30"
+                        android:gravity="center_vertical"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/note_img"
+                        app:layout_constraintTop_toBottomOf="@+id/note_img"
+                        tools:text="note" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

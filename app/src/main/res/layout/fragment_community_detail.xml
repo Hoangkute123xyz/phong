@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_grey_F4F5F7">
+
+        <include
+            android:id="@+id/favUnLoginArea"
+            layout="@layout/fragment_unlogin_common"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/inputMessageChatDetailLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/sendMessageChatDetailButton"
+            android:padding="@dimen/margin_normal"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:background="@drawable/input_message_background">
+
+                <EditText
+                    android:id="@+id/inputMessageChatDetailEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_big"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="@string/hint_input_message"
+                    android:imeOptions="actionSend"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="@dimen/sp_14" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <TextView
+
+            android:id="@+id/sendMessageChatDetailButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:background="@drawable/button_indigo_normal_bg"
+            android:drawableStart="@drawable/ic_send_message"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_10"
+            android:text="Gửi"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/imageChooseMedia"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_chat_image"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatDetailRecycler"
+            style="@style/scrollbar_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/inputMessageChatDetailLayout"
+            android:layout_alignParentTop="true"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/margin_minimum"
+            android:paddingEnd="@dimen/margin_minimum"
+            android:paddingBottom="@dimen/margin_minimum" />
+    </RelativeLayout>
+
+    <data>
+
+        <import type="vn.hexagon.vietnhat.ui.chat.community.CommunityDetailViewModel" />
+
+        <variable
+            name="viewModel"
+            type="CommunityDetailViewModel" />
+    </data>
+</layout>

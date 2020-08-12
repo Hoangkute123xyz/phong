@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="homeCircleMenu">
+        <item>Tin tức</item>
+        <item>Hướng dẫn</item>
+        <item>Cộng đồng</item>
+        <item>Siêu thị</item>
+        <item>Nhà Hàng</item>
+        <item>Giải trí</item>
+        <item>Du lịch</item>
+        <item>Thuê nhà</item>
+        <item>Việc làm</item>
+        <item>Vận chuyển</item>
+        <item>Làm visa</item>
+        <item>Fonehouse</item>
+<!--        <item>Fonehouse Gift</item>-->
+        <item>Quà Tặng</item>
+
+    </string-array>
+
+    <string-array name="listPost">
+        <item>Siêu thị</item>
+        <item>Việc làm</item>
+        <item>Giải trí</item>
+        <item>Du lịch</item>
+        <item>Thuê nhà</item>
+        <item>Nhà Hàng</item>
+        <item>Spa</item>
+        <item>Fonehouse</item>
+        <item>Làm visa</item>
+        <item>Vận chuyển</item>
+    </string-array>
+    <string-array name="listService">
+        <item>Hướng dẫn</item>
+        <item>Vận chuyển</item>
+        <item>Làm visa</item>
+        <item>Fonehouse</item>
+        <item>Nhà Hàng</item>
+        <item>Thuê nhà</item>
+        <item>Du lịch</item>
+        <item>Tin tức</item>
+        <item>Giải trí</item>
+        <item>Việc làm</item>
+        <item>Siêu thị</item>
+    </string-array>
+
+    <string-array name="listFilterByTitle">
+        <item>Lọc theo danh mục</item>
+        <item>Siêu thị</item>
+        <item>Việc làm</item>
+        <item>Phiên dịch</item>
+        <item>Tin tức</item>
+        <item>Du lịch</item>
+        <item>Thuê xe</item>
+        <item>Nhà Hàng</item>
+        <item>Fonehouse</item>
+        <item>Visa</item>
+        <item>Vận chuyển</item>
+        <item>Hướng dẫn</item>
+    </string-array>
+
+    <string-array name="listFilterDisplay">
+        <item>Lọc theo danh mục</item>
+        <item>Siêu thị</item>
+        <item>Việc làm</item>
+        <item>Phiên dịch</item>
+        <item>Du lịch</item>
+        <item>Thuê xe</item>
+        <item>Nhà Hàng</item>
+        <item>Fonehouse</item>
+        <item>Visa</item>
+        <item>Vận chuyển</item>
+    </string-array>
+
+    <string-array name="settingCircleMenu">
+        <item>Tài khoản</item>
+        <item>Quản lý tin đăng</item>
+        <item>Đăng tin</item>
+        <item>Nạp tiền</item>
+        <item>Thông báo</item>
+        <item>Hướng dẫn</item>
+        <item>Đánh giá</item>
+    </string-array>
+
+    <string-array name="roadType">
+        <item>Việt - Nhật</item>
+        <item>Nhật - Việt</item>
+    </string-array>
+    <string-array name="translateType">
+        <item>JPY/ngày</item>
+        <item>JPY/giờ</item>
+    </string-array>
+
+    <string-array name="salaryType">
+        <item>JPY/giờ</item>
+        <item>JPY/tháng</item>
+    </string-array>
+</resources>

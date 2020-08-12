@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fone_nav_grap"
+    app:startDestination="@id/foneHomeFragment">
+    <fragment
+        android:id="@+id/foneHomeFragment"
+        android:name="vn.hexagon.vietnhat.ui.list.phone.FoneHomeFragment"
+        android:label="FoneHomeFragment">
+        <argument
+            android:name="productID"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="modelID"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_foneHomeFragment_to_postDetailFragment"
+            app:destination="@id/postDetailFragment" />
+
+        <action
+            android:id="@+id/action_foneHomeFragment_to_foneSearchFragment"
+            app:destination="@id/foneSearchFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/phoneListFragment"
+        android:name="vn.hexagon.vietnhat.ui.list.phone.PhoneListFragment"
+        android:label="PhoneListFragment">
+        <argument
+            android:name="productID"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="modelID"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_phoneListFragment_to_foneSearchFragment"
+            app:destination="@id/foneSearchFragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_phoneListFragment_to_foneHouseDetailFragment"
+            app:destination="@id/foneHouseDetailFragment" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/guaranteeListFragment"
+        android:name="vn.hexagon.vietnhat.ui.list.phone.GuaranteeListFragment"
+        android:label="GuaranteeListFragment" />
+
+    <fragment
+        android:id="@+id/foneHouseDetailFragment"
+        android:name="vn.hexagon.vietnhat.ui.list.phone.FoneHouseDetailFragment"
+        android:label="FoneHouseDetailFragment">
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <argument
+            android:name="productID"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_foneHouseDetailFragment_to_phoneGiftCommentFragment"
+            app:destination="@id/phoneGiftCommentFragment" />
+        <action
+            android:id="@+id/action_foneHouseDetailFragment_to_orderPhoneFragment"
+            app:destination="@id/orderPhoneFragment" />
+        <action
+            android:id="@+id/action_foneHouseDetailFragment_to_zoomFragment"
+            app:destination="@id/zoomFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/foneSearchFragment"
+        android:name="vn.hexagon.vietnhat.ui.list.phone.FoneSearchFragment"
+        android:label="FoneSearchFragment">
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_foneSearchFragment_to_phoneListFragment"
+            app:destination="@id/phoneListFragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_foneSearchFragment_to_foneHomeFragment"
+            app:destination="@id/foneHomeFragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/phoneGiftCommentFragment"
+        android:name="vn.hexagon.vietnhat.ui.comment.PhoneGiftCommentFragment"
+        android:label="PhoneGiftCommentFragment">
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="string" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/postDetailFragment"
+        android:name="vn.hexagon.vietnhat.ui.detail.PostDetailFragment"
+        android:label="PostDetailFragment">
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_martPostFragment"
+            app:destination="@id/martPostFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_jobPostFragment"
+            app:destination="@id/jobPostFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_transPostFragment"
+            app:destination="@id/transPostFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_travelPostFragment"
+            app:destination="@id/travelPostFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_carPostFragment"
+            app:destination="@id/carPostFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_restaurantPostFragment"
+            app:destination="@id/restaurantPostFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_spaPostFragment"
+            app:destination="@id/spaPostFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_phonePostFragment"
+            app:destination="@id/phonePostFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_visaPostFragment"
+            app:destination="@id/visaPostFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_adsPostFragment"
+            app:destination="@id/adsPostFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_chatDetailFragment"
+            app:destination="@id/chatDetailFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_likedListFragment"
+            app:destination="@id/likedListFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_zoomFragment"
+            app:destination="@id/zoomFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/transPostFragment"
+        android:name="vn.hexagon.vietnhat.ui.post.trans.TransPostFragment"
+        android:label="TransPostFragment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <argument
+            android:name="mode"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/travelPostFragment"
+        android:name="vn.hexagon.vietnhat.ui.post.travel.TravelPostFragment"
+        android:label="TravelPostFragment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <argument
+            android:name="mode"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/carPostFragment"
+        android:name="vn.hexagon.vietnhat.ui.post.car.CarPostFragment"
+        android:label="CarPostFragment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <argument
+            android:name="mode"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/spaPostFragment"
+        android:name="vn.hexagon.vietnhat.ui.post.spa.SpaPostFragment"
+        android:label="SpaPostFragment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <argument
+            android:name="mode"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/phonePostFragment"
+        android:name="vn.hexagon.vietnhat.ui.post.phone.PhonePostFragment"
+        android:label="PhonePostFragment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <argument
+            android:name="mode"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/zoomFragment"
+        android:name="vn.hexagon.vietnhat.ui.zoom.ZoomFragment"
+        android:label="ZoomFragment">
+        <argument
+            android:name="uri"
+            app:argType="string[]" />
+        <argument
+            android:name="pos"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="vn.hexagon.vietnhat.ui.auth.LoginFragment"
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:launchSingleTop="true" />
+        <argument
+            android:name="isLogout"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_loginFragment_to_requestSmsCodeFragment"
+            app:destination="@id/requestSmsCodeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/requestSmsCodeFragment"
+        android:name="vn.hexagon.vietnhat.ui.setting.account.password.RequestSmsCodeFragment"
+        android:label="RequestSmsCodeFragment">
+        <argument
+            android:name="phone"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_requestSmsCodeFragment_to_accountInfoFragment"
+            app:destination="@id/accountInfoFragment" />
+        <action
+            android:id="@+id/action_requestSmsCodeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="vn.hexagon.vietnhat.ui.auth.RegisterFragment"
+        android:label="RegisterFragment">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_registerFragment_to_verifyFragment"
+            app:destination="@id/verifyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/verifyFragment"
+        android:name="vn.hexagon.vietnhat.ui.auth.VerifyFragment"
+        android:label="VerifyFragment"
+        app:launchSingleTop="true">
+        <argument
+            android:name="verifyCd"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_verifyFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_verifyFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/accountInfoFragment"
+        android:name="vn.hexagon.vietnhat.ui.setting.account.AccountInfoFragment"
+        android:label="AccountInfoFragment">
+        <action
+            android:id="@+id/action_accountInfoFragment_to_requestSmsCodeFragment"
+            app:destination="@id/requestSmsCodeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/martPostFragment"
+        android:name="vn.hexagon.vietnhat.ui.post.mart.MartPostFragment"
+        android:label="MartPostFragment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <argument
+            android:name="mode"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/jobPostFragment"
+        android:name="vn.hexagon.vietnhat.ui.post.job.JobPostFragment"
+        android:label="JobPostFragment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <argument
+            android:name="mode"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/likedListFragment"
+        android:name="vn.hexagon.vietnhat.ui.favourite.LikedListFragment"
+        android:label="LikedListFragment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_likedListFragment_to_chatDetailFragment"
+            app:destination="@id/chatDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatDetailFragment"
+        android:name="vn.hexagon.vietnhat.ui.chat.ChatDetailFragment"
+        android:label="ChatDetailFragment">
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="userAvatar"
+            app:argType="string" />
+        <argument
+            android:name="userPhone"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/commentFragment"
+        android:name="vn.hexagon.vietnhat.ui.comment.CommentFragment"
+        android:label="CommentFragment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adsPostFragment"
+        android:name="vn.hexagon.vietnhat.ui.post.ads.AdsPostFragment"
+        android:label="AdsPostFragment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <argument
+            android:name="mode"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/visaPostFragment"
+        android:name="vn.hexagon.vietnhat.ui.post.visa.VisaPostFragment"
+        android:label="VisaPostFragment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <argument
+            android:name="mode"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/restaurantPostFragment"
+        android:name="vn.hexagon.vietnhat.ui.post.restaurant.RestaurantPostFragment"
+        android:label="RestaurantPostFragment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <argument
+            android:name="mode"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderPhoneFragment"
+        android:name="vn.hexagon.vietnhat.ui.list.phone.OrderPhoneFragment"
+        android:label="OrderPhoneFragment">
+        <argument
+            android:name="user_id"
+            app:argType="string" />
+    </fragment>
+</navigation>
