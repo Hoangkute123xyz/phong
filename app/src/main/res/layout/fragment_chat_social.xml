@@ -11,28 +11,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/sendMessageChatDetailButton"
-            android:padding="@dimen/margin_normal">
+            android:paddingStart="@dimen/margin_normal"
+            android:paddingTop="@dimen/dp_1"
+            android:paddingEnd="@dimen/margin_normal"
+            android:paddingBottom="@dimen/margin_normal">
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:layout_marginBottom="@dimen/margin_normal"
                 android:background="@drawable/input_message_background">
 
                 <EditText
                     android:id="@+id/inputMessageChatDetailEdit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginStart="@dimen/margin_medium"
                     android:layout_marginTop="@dimen/margin_small"
-                    android:layout_marginEnd="@dimen/margin_big"
+                    android:layout_marginEnd="@dimen/margin_medium"
                     android:layout_marginBottom="@dimen/margin_small"
                     android:background="@null"
                     android:gravity="top"
                     android:hint="@string/hint_input_message"
                     android:imeOptions="actionSend"
-                    android:lines="5"
+                    android:minLines="2"
+                    android:maxLines="5"
                     android:textSize="@dimen/sp_14" />
             </FrameLayout>
         </FrameLayout>
@@ -41,19 +43,19 @@
             android:id="@+id/sendMessageChatDetailButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:text="Gửi"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:background="@drawable/item_message_send_background"
             android:drawableStart="@drawable/ic_send_message"
             android:drawablePadding="@dimen/dp_10"
-            android:padding="@dimen/dp_10"
             android:gravity="center_vertical"
+            android:padding="@dimen/dp_10"
+            android:text="Gửi"
             android:textColor="@android:color/white"
-            android:textStyle="bold"
             android:textSize="@dimen/sp_16"
-            android:layout_marginBottom="@dimen/dp_10"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:background="@drawable/item_message_send_background"  />
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chatDetailRecycler"

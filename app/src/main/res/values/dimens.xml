@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="margin_big">24dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
     <dimen name="margin_default">10dp</dimen>
     <dimen name="margin_normal">10dp</dimen>
     <dimen name="margin_small">8dp</dimen>

@@ -33,14 +33,13 @@
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="@dimen/dp_0"
                     android:clipToPadding="false"
-                    android:paddingBottom="@dimen/dp_16"
+                    android:paddingBottom="@dimen/margin_minimum"
                     app:layout_constraintBottom_toTopOf="@+id/cmtContentEd"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:listitem="@layout/layout_comment_row" />
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
                     android:id="@+id/cmtContentEd"
@@ -49,35 +48,36 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginEnd="@dimen/dp_16"
-                    android:layout_marginBottom="@dimen/dp_16"
-                    android:lines="3"
+                    android:layout_marginBottom="8dp"
                     android:background="@drawable/input_message_background"
-                    android:inputType="textMultiLine"
                     android:gravity="top"
                     android:hint="Nhập nội dung"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
                     android:padding="@dimen/dp_10"
                     app:layout_constraintBottom_toTopOf="@id/cmtSendBtn"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:importantForAutofill="no"
                     tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/cmtSendBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/cmtContentEd"
-                    android:text="Gửi"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:background="@drawable/button_indigo_normal_bg"
                     android:drawableStart="@drawable/ic_send_message"
                     android:drawablePadding="@dimen/dp_10"
-                    android:padding="@dimen/dp_10"
                     android:gravity="center_vertical"
+                    android:padding="@dimen/dp_10"
+                    android:text="Gửi"
                     android:textColor="@android:color/white"
-                    android:textStyle="bold"
                     android:textSize="@dimen/sp_16"
-                    android:layout_marginBottom="@dimen/dp_10"
-                    android:background="@drawable/button_indigo_normal_bg" />
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/cmtContentEd" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
