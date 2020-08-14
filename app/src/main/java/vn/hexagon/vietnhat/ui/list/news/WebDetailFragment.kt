@@ -53,13 +53,11 @@ class WebDetailFragment: MVVMBaseFragment<FragmentNewsDetailBinding, PostListVie
 
     override fun isShowActionBar(): View? = SimpleActionBar(activity).apply {
 
-        simpleTitleText = getString(R.string.create_post_news) //tin tức
+        getBaseViewModel()
 
-
-
-
-
-
+        viewModel.newDetailResponse.observe(viewLifecycleOwner, Observer { response ->
+            simpleTitleText = response.data.title
+        })
 
         leftButtonVisible = true
         rightButtonVisible = false
