@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
@@ -50,6 +51,10 @@ class FoneHouseDetailFragment :
         argument?.let {
             productId = FoneHouseDetailFragmentArgs.fromBundle(it).productID
             userId = FoneHouseDetailFragmentArgs.fromBundle(it).userId
+
+//            Toast.makeText(context, productId, Toast.LENGTH_LONG).show()
+//            Toast.makeText(context, userId, Toast.LENGTH_LONG).show()
+
             userId?.let { userId -> foneHouseDetailViewModel.getFoneDetail(userId, productId!!) }
         }
     }
@@ -69,8 +74,9 @@ class FoneHouseDetailFragment :
 
     override fun initView() {
         // Init pager adapter
-        pagerAdapter = InfinityPagerAdapter()
+//        pagerAdapter = InfinityPagerAdapter()
         var actionBar = baseActionBar as SimpleActionBar
+
 
         actionBar.leftActionBarButton?.setOnClickListener {
             findNavController().popBackStack()
@@ -93,7 +99,6 @@ class FoneHouseDetailFragment :
                 )
             findNavController().navigate(action)
         }
-
 
 
         foneHouseDetailViewModel.foneDetailResponse.observe(
@@ -120,7 +125,11 @@ class FoneHouseDetailFragment :
         }
 
         tvBuy.setOnClickListener {
-            var action  = FoneHouseDetailFragmentDirections.actionFoneHouseDetailFragmentToOrderPhoneFragment(userId!!)
+            var action =
+                FoneHouseDetailFragmentDirections.actionFoneHouseDetailFragmentToOrderPhoneFragment(
+                    userId!!,
+                    productId!!
+                )
             findNavController().navigate(action)
         }
     }

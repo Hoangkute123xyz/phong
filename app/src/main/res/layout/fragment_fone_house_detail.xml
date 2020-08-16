@@ -29,6 +29,7 @@
                 android:layout_height="@dimen/dp_240"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <LinearLayout
                 android:id="@+id/detailInfinityIndicator"
                 android:layout_width="match_parent"

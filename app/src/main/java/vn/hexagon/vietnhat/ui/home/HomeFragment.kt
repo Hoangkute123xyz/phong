@@ -28,6 +28,7 @@ import vn.hexagon.vietnhat.data.model.banner.BannerResponse
 import vn.hexagon.vietnhat.databinding.FragmentHomeBinding
 import vn.hexagon.vietnhat.ui.MainActivity
 import vn.hexagon.vietnhat.ui.foneplace.FonePlaceActivity
+import vn.hexagon.vietnhat.ui.list.phone.FoneHouseDetailFragmentDirections
 import java.util.*
 import javax.inject.Inject
 import kotlin.concurrent.scheduleAtFixedRate
@@ -154,7 +155,7 @@ class HomeFragment : MVVMBaseFragment<FragmentHomeBinding, HomeViewModel>() {
      */
     private fun setUpBannerAdapter() {
         // Init pager adapter
-        pagerAdapter = InfinityPagerAdapter()
+        pagerAdapter = InfinityPagerAdapter(::onClickImg)
         // Get banner response
         homeViewModel.bannerResponse.observe(viewLifecycleOwner,
             Observer<BannerResponse> { response ->
@@ -175,6 +176,20 @@ class HomeFragment : MVVMBaseFragment<FragmentHomeBinding, HomeViewModel>() {
                     }
                 }
             })
+    }
+
+    fun onClickImg(list: ArrayList<String>, position: Int) {
+        val listImg = arrayOfNulls<String>(list.size)
+        list.toArray(listImg)
+
+//        FoneHouseDetailFragmentDirections.actionFoneHouseDetailFragmentToZoomFragment
+
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToZoomFragment(
+                listImg,
+                position
+            )
+        findNavController().navigate(action)
     }
 
     override fun initAction() {

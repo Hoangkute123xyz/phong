@@ -1,6 +1,7 @@
 package vn.hexagon.vietnhat.ui.list.phone
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,6 +60,7 @@ class PagerDetailAdapter(private val context: Context,
         list.forEach {
             imgList.add(it)
         }
+        Log.d("danhsach", imgList.toString())
         notifyDataSetChanged()
     }
 }

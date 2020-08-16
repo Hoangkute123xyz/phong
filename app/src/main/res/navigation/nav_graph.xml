@@ -9,6 +9,11 @@
         android:name="vn.hexagon.vietnhat.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_zoomFragment"
+            app:destination="@id/zoomFragment" />
+
         <action
             android:id="@+id/action_homeFragment_to_martFragment"
             app:destination="@id/martListFragment" />
@@ -84,6 +89,7 @@
         <action
             android:id="@+id/action_homeFragment_to_phonePostFragment"
             app:destination="@id/phonePostFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"

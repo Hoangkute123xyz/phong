@@ -408,7 +408,10 @@
         android:name="vn.hexagon.vietnhat.ui.list.phone.OrderPhoneFragment"
         android:label="OrderPhoneFragment">
         <argument
-            android:name="user_id"
+            android:name="userId"
+            app:argType="string" />
+        <argument
+            android:name="productId"
             app:argType="string" />
     </fragment>
 </navigation>

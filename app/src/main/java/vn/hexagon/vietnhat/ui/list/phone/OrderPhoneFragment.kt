@@ -27,6 +27,7 @@ class OrderPhoneFragment : MVVMBaseFragment<FragmentOrderPhoneBinding, FoneHouse
     // View model
     private lateinit var foneHouseDetailViewModel: FoneHouseDetailViewModel
     private var userId: String? = Constant.BLANK
+    private var productId: String? = null
     private var timeRangeList = arrayListOf<TimeRange>()
     private var selectedTimeRange: TimeRange? = null
 
@@ -43,10 +44,13 @@ class OrderPhoneFragment : MVVMBaseFragment<FragmentOrderPhoneBinding, FoneHouse
     override fun getBindingVariable(): Int = BR.viewModel
 
     override fun initData(argument: Bundle?) {
-        userId = sharedPreferences.getString(
-            getString(R.string.variable_local_user_id),
-            Constant.BLANK
-        )
+
+        argument?.let {
+            productId = OrderPhoneFragmentArgs.fromBundle(it).productId
+            userId = OrderPhoneFragmentArgs.fromBundle(it).userId
+            userId?.let { userId -> foneHouseDetailViewModel.getFoneDetail(userId, productId!!) }
+        }
+
     }
 
     override fun isShowActionBar(): View? = SimpleActionBar(context).apply {
@@ -67,6 +71,14 @@ class OrderPhoneFragment : MVVMBaseFragment<FragmentOrderPhoneBinding, FoneHouse
     override fun getLayoutId(): Int = R.layout.fragment_order_phone
 
     override fun initView() {
+        foneHouseDetailViewModel.foneDetailResponse.observe(
+            viewLifecycleOwner,
+            Observer { response ->
+//                Toast.makeText(context, "11${response.data.code}", Toast.LENGTH_LONG).show()
+                editProductCode.setText(response.data.code)
+                editPrice.setText(response.data.price)
+            })
+
         foneHouseDetailViewModel.getTimeRange()
         foneHouseDetailViewModel.timeRangeResponse.observe(this, Observer { response ->
             response.data?.let {

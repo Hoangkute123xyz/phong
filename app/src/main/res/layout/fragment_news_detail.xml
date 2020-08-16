@@ -11,39 +11,39 @@
             type="vn.hexagon.vietnhat.ui.list.PostListViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvPostDetailTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:paddingStart="@dimen/dp_5"
-            android:paddingEnd="@dimen/dp_5"
-            android:paddingBottom="@dimen/dp_2"
-            android:singleLine="true"
-            android:scrollHorizontally="true"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:text="@{viewmodel.newDetailResponse.data.title}"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/sp_18"
-            android:textStyle="bold|italic"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:id="@+id/tvPostDetailTitle"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@android:color/white"-->
+<!--            android:paddingStart="@dimen/dp_5"-->
+<!--            android:paddingEnd="@dimen/dp_5"-->
+<!--            android:paddingBottom="@dimen/dp_2"-->
+<!--            android:singleLine="true"-->
+<!--            android:scrollHorizontally="true"-->
+<!--            android:ellipsize="marquee"-->
+<!--            android:marqueeRepeatLimit="marquee_forever"-->
+<!--            android:focusable="true"-->
+<!--            android:focusableInTouchMode="true"-->
+<!--            android:text="@{viewmodel.newDetailResponse.data.title}"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="@dimen/sp_18"-->
+<!--            android:textStyle="bold|italic"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
         <WebView
             android:id="@+id/newDetailWebView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
-            app:layout_constraintTop_toBottomOf="@+id/tvPostDetailTitle" />
+            />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 </layout>

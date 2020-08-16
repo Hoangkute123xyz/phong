@@ -91,7 +91,7 @@
     <string name="create_post_car">Thuê Nhà</string>
     <string name="create_post_restaurant">Nhà Hàng</string>
     <string name="create_post_phone">Fonehouse</string>
-<!--        <string name="create_post_phone_gift">Fonehouse Gift</string>      cũ-->
+    <!--        <string name="create_post_phone_gift">Fonehouse Gift</string>      cũ-->
     <string name="create_post_phone_gift">Quà Tặng</string> <!--    theo yêu cầu   -->
     <string name="social_detail">Cộng đồng</string>
     <string name="create_post_spa">Trung Tâm Spa</string>
@@ -210,10 +210,10 @@
     <string name="hint_input_message">Viết tin nhắn...</string>
     <string name="deliver_taken_spot">Điểm nhận</string>
     <string name="detail_receive_spot">Điểm trả</string>
-<!--    <string name="detail_product_type"><b>Loại hàng:</b> %1s</string>-->
-<!--    <string name="detail_product_weight"><b>Cân nặng:</b> %1s</string>-->
-<!--    <string name="title_and_detail_phone"><b>Số điện thoại:</b> %1s</string>-->
-<!--    <string name="detail_company_name"><b>Tên công ty:</b> %1s</string>-->
+    <!--    <string name="detail_product_type"><b>Loại hàng:</b> %1s</string>-->
+    <!--    <string name="detail_product_weight"><b>Cân nặng:</b> %1s</string>-->
+    <!--    <string name="title_and_detail_phone"><b>Số điện thoại:</b> %1s</string>-->
+    <!--    <string name="detail_company_name"><b>Tên công ty:</b> %1s</string>-->
     <string name="title_phone">Số điện thoại:</string>
     <string name="detail_phone">%1s</string>
     <string name="min_price">Thấp nhất</string>

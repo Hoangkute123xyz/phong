@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="androidx.lifecycle.LiveData" />
+
+        <import type="vn.hexagon.vietnhat.data.model.fone.FoneDetailResponse" />
+
+        <variable
+            name="viewmodel"
+            type="vn.hexagon.vietnhat.ui.list.phone.FoneHouseDetailViewModel" />
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -90,6 +102,7 @@
                 android:maxLines="1"
                 android:padding="@dimen/dp_15"
                 android:textColor="@android:color/black"
+                android:text="@{viewmodel.foneDetailResponse.data.code}"
                 android:textSize="15sp" />
 
             <EditText
@@ -105,6 +118,7 @@
                 android:maxLines="1"
                 android:padding="@dimen/dp_15"
                 android:textColor="@android:color/black"
+                android:text="@{viewmodel.foneDetailResponse.data.price}"
                 android:textSize="15sp" />
 
             <TextView
@@ -127,6 +141,17 @@
 
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/dp_20"-->
+<!--                android:layout_marginTop="@dimen/dp_20"-->
+<!--                android:layout_marginEnd="@dimen/dp_20"-->
+<!--                android:justificationMode="inter_word"-->
+<!--                android:text="@{viewmodel.foneDetailResponse.data.code}"-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:textSize="@dimen/sp_17" />-->
 
             <TextView
                 android:id="@+id/tvNote"
