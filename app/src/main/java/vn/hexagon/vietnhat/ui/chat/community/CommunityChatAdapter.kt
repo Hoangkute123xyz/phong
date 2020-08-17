@@ -15,7 +15,11 @@ import vn.hexagon.vietnhat.data.model.chat.CommunityContentResponse
 import vn.hexagon.vietnhat.databinding.ItemCommunityReceiveBinding
 import vn.hexagon.vietnhat.databinding.ItemCommunitySendBinding
 
-class CommunityChatAdapter(private val userId: String, private val userAvatar: String) :
+class CommunityChatAdapter(
+    private val userId: String,
+    private val userAvatar: String,
+    private val onClickImg: (ArrayList<String>, Int) -> Unit
+) :
     BaseAdapter<CommunityContent>(BaseDiffUtil()) {
 
     private val VIEW_TYPE_SEND = 1
@@ -23,6 +27,7 @@ class CommunityChatAdapter(private val userId: String, private val userAvatar: S
 
     private var chatDetail: CommunityContentResponse? = null
     private var chatContent: List<CommunityContent> = ArrayList()
+    private val imgList = ArrayList<String>()
 
     fun setData(chatDetail: CommunityContentResponse) {
         this.chatDetail = chatDetail
@@ -71,8 +76,6 @@ class CommunityChatAdapter(private val userId: String, private val userAvatar: S
                     binding.itemMessageReceiveAvatarImage.visibility = View.GONE
                 }
 
-
-
                 when (item.type) {
                     "1" -> {
                         binding.imageContent.visibility = View.GONE
@@ -82,11 +85,17 @@ class CommunityChatAdapter(private val userId: String, private val userAvatar: S
                     "2" -> {
                         binding.itemMessageSendContentText.visibility = View.GONE
                         binding.imageContent.visibility = View.VISIBLE
+
                         Glide.with(binding.imageContent).load(item.content)
                             .placeholder(R.drawable.ic_chat_image)
                             .error(R.drawable.ic_chat_image)
                             .apply(RequestOptions.fitCenterTransform())
                             .into(binding.imageContent)
+                        imgList.clear()
+                        imgList.add(item.content)
+                        binding.imageContent.setOnClickListener {
+                            onClickImg(imgList, position)
+                        }
                     }
                 }
 
@@ -113,9 +122,16 @@ class CommunityChatAdapter(private val userId: String, private val userAvatar: S
                             .error(R.drawable.ic_chat_image)
                             .apply(RequestOptions.fitCenterTransform())
                             .into(binding.imageContent)
+
+                        imgList.clear()
+                        imgList.add(item.content)
+                        binding.imageContent.setOnClickListener {
+                            onClickImg(imgList, position)
+                        }
                     }
                 }
             }
+
         }
     }
 }

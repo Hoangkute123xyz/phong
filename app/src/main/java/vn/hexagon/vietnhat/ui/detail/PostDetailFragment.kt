@@ -243,8 +243,11 @@ class PostDetailFragment : MVVMBaseFragment<FragmentPostDetailBinding, PostDetai
      */
     private fun initActionBar() {
         // Init action bar
+
+
         actionBar?.apply {
-            simpleTitleText = getTitleScreen(serviceId)
+            simpleTitleText = postDetailViewModel.detailPostResponse.value!!.data.title
+
             leftButtonVisible = true
             rightButtonVisible = userId == authorId
             rightButtonResource = R.drawable.ic_edit

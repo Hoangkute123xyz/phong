@@ -147,6 +147,7 @@ class PhoneListFragment : MVVMBaseFragment<FragmentPhoneListBinding, PostListVie
                 loadData(Constant.POST_PER_PAGE)
             }
         }
+
         activity?.let { context ->
             phoneRecyclerView.apply {
                 setHasFixedSize(true)
@@ -191,7 +192,7 @@ class PhoneListFragment : MVVMBaseFragment<FragmentPhoneListBinding, PostListVie
 
         // Response data
         postListViewModel.foneListResponse.observe(this, Observer { response ->
-            DebugLog.e("SIZE: ${response.data.size}")
+            DebugLog.e("SIZE danh sach dien thoai: ${response.data.size}")
             phoneAdapter!!.submitList(response.data)
             getResponse(response)
         })

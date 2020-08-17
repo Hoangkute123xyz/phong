@@ -48,22 +48,22 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@id/barrier5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/postDetailTitle"
+                app:layout_constraintTop_toTopOf="@id/postDetailAvatar"
                 tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/postDetailTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_8"
-                android:text="@{viewmodel.detailPostResponse.data.title}"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/sp_16"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/barrier5"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Tuyển người giúp việc tại nhà, dọn dẹp nhà, trông trẻ, nấu ăn" />
+<!--            <TextView-->
+<!--                android:id="@+id/postDetailTitle"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/dp_8"-->
+<!--                android:text="@{viewmodel.detailPostResponse.data.title}"-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:textSize="@dimen/sp_16"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/barrier5"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                tools:text="Tuyển người giúp việc tại nhà, dọn dẹp nhà, trông trẻ, nấu ăn" />-->
 
             <ImageView
                 android:id="@+id/postDetailAvatar"

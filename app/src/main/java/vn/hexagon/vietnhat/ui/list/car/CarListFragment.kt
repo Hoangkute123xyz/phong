@@ -83,6 +83,9 @@ class CarListFragment: MVVMBaseFragment<FragmentCarListBinding, PostListViewMode
 
     override fun isShowActionBar(): View? = SimpleActionBar(activity).apply {
         simpleTitleText = getString(R.string.create_post_car)
+//        postListViewModel.newDetailResponse.observe(viewLifecycleOwner, Observer { response ->
+//            simpleTitleText = response.data.title
+//        })
         leftButtonVisible = true
         rightButtonVisible = true
         rightButtonResource = R.drawable.ic_search

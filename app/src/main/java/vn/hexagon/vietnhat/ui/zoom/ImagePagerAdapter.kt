@@ -31,7 +31,7 @@ class ImagePagerAdapter(private val context: Context,
         Glide.with(context)
             .load(imageList[position])
             .fitCenter()
-            .placeholder(R.drawable.ic_placeholder_small)
+            .placeholder(R.drawable.img_guide)
             .into(photoView)
         photoView.maximumScale = 5.0f
         photoView.mediumScale = 3.0f

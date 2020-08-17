@@ -49,19 +49,19 @@
                 app:srcCompat="@drawable/ic_top"
                 tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/deliverDetailTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_8"
-                android:layout_marginEnd="@dimen/dp_16"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/sp_16"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/barrier4"
-                app:layout_constraintTop_toBottomOf="@+id/deliverDetailServiceName"
-                tools:text="Tuyển người giúp việc tại nhà, dọn dẹp nhà, trông trẻ, nấu ăn" />
+<!--            <TextView-->
+<!--                android:id="@+id/deliverDetailTitle"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/dp_8"-->
+<!--                android:layout_marginEnd="@dimen/dp_16"-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:textSize="@dimen/sp_16"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/barrier4"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/deliverDetailServiceName"-->
+<!--                tools:text="Tuyển người giúp việc tại nhà, dọn dẹp nhà, trông trẻ, nấu ăn" />-->
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier4"
@@ -80,7 +80,7 @@
                 android:background="@drawable/shape_circle_layout"
                 android:contentDescription="@null"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/deliverDetailTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/deliverDetailDate" />
 
             <TextView
                 android:id="@+id/deliverDetailDate"

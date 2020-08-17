@@ -14,10 +14,14 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.action_bar_base.*
+import kotlinx.android.synthetic.main.action_bar_base.leftActionBarButton
+import kotlinx.android.synthetic.main.action_bar_base.rightActionBarButton
+import kotlinx.android.synthetic.main.action_bar_base.view.*
 import kotlinx.android.synthetic.main.fragment_detail_deliver.*
 import vn.hexagon.vietnhat.BR
 import vn.hexagon.vietnhat.R
@@ -98,7 +102,15 @@ class DeliverDetailFragment : MVVMBaseFragment<FragmentDetailDeliverBinding, Pos
         }
     }
 
-    override fun isShowActionBar(): View? = SimpleActionBar(activity)
+    override fun isShowActionBar(): View? = SimpleActionBar(activity).apply {
+
+        getBaseViewModel()
+
+        postDetailViewModel.detailPostResponse.observe(viewLifecycleOwner, Observer { response ->
+            simpleTitleText = response.data.title
+        })
+
+    }
 
     override fun isActionBarOverlap(): Boolean = false
 
@@ -112,8 +124,16 @@ class DeliverDetailFragment : MVVMBaseFragment<FragmentDetailDeliverBinding, Pos
             sharedPreferences.getString(getString(R.string.variable_local_user_id), Constant.BLANK)
         authorId = arguments?.let { DeliverDetailFragmentArgs.fromBundle(it).userId }
         // Init action bar
+
+        getBaseViewModel()
+
         actionBar?.apply {
-            simpleTitleText = getString(R.string.create_post_deliver)
+
+//            simpleTitleText = postDetailViewModel.detailPostResponse.value!!.data.title
+
+//            simpleTitleText = getString(R.string.create_post_deliver)
+
+
             leftButtonVisible = true
             rightButtonVisible = userId == authorId
             rightButtonResource = R.drawable.ic_edit
@@ -180,7 +200,7 @@ class DeliverDetailFragment : MVVMBaseFragment<FragmentDetailDeliverBinding, Pos
         deliverDetailTop.visibility =
             if (post.isTop == Constant.TOP_CHECKED) View.VISIBLE else View.GONE
         // Title
-        deliverDetailTitle.text = post.title
+//        deliverDetailTitle.text = post.title
         // Service name
         deliverDetailServiceName.text = Constant.DELIVER_SERVICE_NM
         // Avatar

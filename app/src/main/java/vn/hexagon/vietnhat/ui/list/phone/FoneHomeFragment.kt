@@ -4,15 +4,20 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.action_bar_base.view.*
+import kotlinx.android.synthetic.main.fragment_fone_home.*
+import kotlinx.android.synthetic.main.fragment_news_list.*
 import kotlinx.android.synthetic.main.fragment_phone_list.*
+import kotlinx.android.synthetic.main.fragment_phone_list.phoneListRefresher
 import vn.hexagon.vietnhat.BR
 import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.mvvm.MVVMBaseFragment
@@ -20,10 +25,13 @@ import vn.hexagon.vietnhat.base.ui.SimpleActionBar
 import vn.hexagon.vietnhat.base.utils.DebugLog
 import vn.hexagon.vietnhat.base.view.EndlessScrollingRecycler
 import vn.hexagon.vietnhat.constant.Constant
+import vn.hexagon.vietnhat.data.model.fone.ListFoneHouseResponse
 import vn.hexagon.vietnhat.data.model.service.ListPostResponse
 import vn.hexagon.vietnhat.databinding.FragmentFoneHomeBinding
+import vn.hexagon.vietnhat.ui.chat.community.CommunityDetailFragmentDirections
 import vn.hexagon.vietnhat.ui.dialog.search.DialogSearchClickListener
 import vn.hexagon.vietnhat.ui.list.PostListViewModel
+import java.util.ArrayList
 import javax.inject.Inject
 
 class FoneHomeFragment : MVVMBaseFragment<FragmentFoneHomeBinding, PostListViewModel>(),
@@ -46,6 +54,8 @@ class FoneHomeFragment : MVVMBaseFragment<FragmentFoneHomeBinding, PostListViewM
     var modelID: String? = ""
 
     var phoneAdapter: PhoneListAdapter? = null
+    var allProductAdapter: FoneHouseListAdapter? = null
+
 
     override fun getBaseViewModel(): PostListViewModel {
         postListViewModel =
@@ -103,24 +113,32 @@ class FoneHomeFragment : MVVMBaseFragment<FragmentFoneHomeBinding, PostListViewM
 
     override fun initView() {
 
-        phoneAdapter = PhoneListAdapter(postListViewModel, ::onItemClick, ::onClickFav)
+        imageViewBannerFoneHome.setOnClickListener {
+            val list = ArrayList<String>()
+            list.add(R.drawable.img_guide.toString())
+//            val position: Int = 0
+            onClickImg(list, 0)
+        }
 
-        val foneListAdapter = FoneHouseListAdapter(postListViewModel, this::onItemClick)
-        phoneListRefresher.setOnRefreshListener {
+        allProductAdapter = FoneHouseListAdapter(postListViewModel, ::onItemClick)
+
+        allProductListRefresher.setOnRefreshListener {
             if (!TextUtils.isEmpty(productID) && !TextUtils.isEmpty(modelID)) {
                 searchData(productID!!, modelID!!, Constant.POST_PER_PAGE)
             } else {
                 loadData(Constant.POST_PER_PAGE)
             }
         }
+
         activity?.let { context ->
-            phoneRecyclerView.apply {
+            allProductRecyclerView.apply {
                 setHasFixedSize(true)
                 val gridLayoutManager = GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
                 layoutManager = gridLayoutManager
-                adapter = phoneAdapter
+                adapter = allProductAdapter
                 addOnScrollListener(object : EndlessScrollingRecycler(gridLayoutManager) {
                     override fun onLoadMore(numberPost: Int) {
+                        DebugLog.e("COCA: $numberPost")
                         if (!TextUtils.isEmpty(productID) && !TextUtils.isEmpty(modelID)) {
                             searchData(productID!!, modelID!!, numberPost * 20)
                         } else {
@@ -129,22 +147,34 @@ class FoneHomeFragment : MVVMBaseFragment<FragmentFoneHomeBinding, PostListViewM
                     }
                 })
             }
+
+            postListViewModel.foneSearchResponse.observe(this, Observer { response ->
+                allProductAdapter!!.submitList(response.data)
+                getResponse(response)
+            })
+
         }
 
+
         // Response data
-        postListViewModel.postListResponse.observe(this, Observer { response ->
-            DebugLog.e("SIZE: ${response.data.size}")
-            phoneAdapter!!.submitList(response.data)
+        postListViewModel.foneListResponse.observe(this, Observer { response ->
+            DebugLog.e("SIZE all product: ${response.data.size}")
+            allProductAdapter!!.submitList(response.data)
             getResponse(response)
         })
 
-//        // Response data
-//        postListViewModel.foneListResponse.observe(this, Observer { response ->
-//            foneListAdapter.submitList(response.data)
-//            getResponse(response)
-//        })
-//
+    }
 
+    fun onClickImg(list: ArrayList<String>, position: Int) {
+        val listImg = arrayOfNulls<String>(list.size)
+        list.toArray(listImg)
+
+        val action =
+            FoneHomeFragmentDirections.actionFoneHomeFragmentToZoomFragment(
+                listImg,
+                position
+            )
+        findNavController().navigate(action)
     }
 
     private fun onClickFav(b: Boolean) {
@@ -161,8 +191,8 @@ class FoneHomeFragment : MVVMBaseFragment<FragmentFoneHomeBinding, PostListViewM
      *
      * @param response
      */
-    private fun getResponse(response: ListPostResponse) {
-        phoneListRefresher.isRefreshing = false
+    private fun getResponse(response: ListFoneHouseResponse) {
+        allProductListRefresher.isRefreshing = false
         if (response.errorId == Constant.RESPOND_CD) {
             DebugLog.e("Fetch List Success: ${response.errorId}")
         } else {
@@ -180,6 +210,11 @@ class FoneHomeFragment : MVVMBaseFragment<FragmentFoneHomeBinding, PostListViewM
                 context!!
             )
         }
+
+        postListViewModel.getFoneHouse(
+            0,
+            numberPost
+        )
 
     }
 
@@ -218,9 +253,16 @@ class FoneHomeFragment : MVVMBaseFragment<FragmentFoneHomeBinding, PostListViewM
      */
     private fun onItemClick(userId: String, postId: String) {
 
-        val action =
-            FoneHomeFragmentDirections.actionFoneHomeFragmentToPostDetailFragment(userId, postId)
-        findNavController().navigate(action)
+        Toast.makeText(context, "Xem chi tiết ở danh sách sản phẩm!", Toast.LENGTH_LONG).show()
+//        val action =
+//            FoneHomeFragmentDirections.actionFoneHomeFragmentToPostDetailFragment(userId, postId)
+//        findNavController().navigate(action)
+
+//        var action = PhoneListFragmentDirections.actionPhoneListFragmentToFoneHouseDetailFragment(
+//            userId,
+//            postId
+//        )
+//        findNavController().navigate(action)
     }
 
     private fun searchData(productID: String, modelID: String, numberPost: Int) {

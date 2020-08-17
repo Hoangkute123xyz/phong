@@ -27,6 +27,7 @@ import vn.hexagon.vietnhat.base.mvvm.MVVMBaseFragment
 import vn.hexagon.vietnhat.base.ui.SimpleActionBar
 import vn.hexagon.vietnhat.constant.Constant
 import vn.hexagon.vietnhat.databinding.FragmentCommunityDetailBinding
+import vn.hexagon.vietnhat.ui.home.HomeFragmentDirections
 import java.util.*
 import javax.inject.Inject
 
@@ -95,8 +96,6 @@ class CommunityDetailFragment :
         leftActionBarButton.setOnClickListener {
             findNavController().popBackStack()
         }
-
-
     }
 
     override fun isActionBarOverlap(): Boolean = false
@@ -113,9 +112,18 @@ class CommunityDetailFragment :
         } else {
             processAfterLogin()
         }
+    }
 
+    fun onClickImg(list: ArrayList<String>, position: Int) {
+        val listImg = arrayOfNulls<String>(list.size)
+        list.toArray(listImg)
 
-
+        val action =
+            CommunityDetailFragmentDirections.actionCommunityDetailFragmentToZoomFragment(
+                listImg,
+                position
+            )
+        findNavController().navigate(action)
     }
 
     private fun processAfterLogin() {
@@ -195,7 +203,7 @@ class CommunityDetailFragment :
             manager.stackFromEnd = true
             layoutManager = manager
             itemAnimator = DefaultItemAnimator()
-            chatAdapter = CommunityChatAdapter(userId!!, userImageUrl!!)
+            chatAdapter = CommunityChatAdapter(userId!!, userImageUrl!!, ::onClickImg)
             adapter = chatAdapter
 
             addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, oldBottom ->

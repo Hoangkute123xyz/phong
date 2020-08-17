@@ -865,5 +865,8 @@
         <action
             android:id="@+id/action_communityDetailFragment_to_addGroupFragment"
             app:destination="@id/addGroupFragment" />
+        <action
+            android:id="@+id/action_communityDetailFragment_to_zoomFragment"
+            app:destination="@id/zoomFragment" />
     </fragment>
 </navigation>
