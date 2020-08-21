@@ -1,15 +1,20 @@
 package vn.hexagon.vietnhat.ui.list.phone
 
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.ui.BaseAdapter
+import vn.hexagon.vietnhat.base.utils.DebugLog
 import vn.hexagon.vietnhat.constant.Constant
 import vn.hexagon.vietnhat.data.model.fone.Fone
 import vn.hexagon.vietnhat.data.remote.NetworkState
@@ -20,7 +25,7 @@ import vn.hexagon.vietnhat.ui.list.PostListViewModel
 class FoneHouseListAdapter(
     private val viewModel: PostListViewModel,
     private val onClick: (String, String) -> Unit
-) : BaseAdapter<Fone>(ListDiffCallback()) {
+) : BaseAdapter<Fone>(ListDiffCallback()), Filterable {
 
     // Network state
     private var networkState: NetworkState? = null
@@ -50,27 +55,6 @@ class FoneHouseListAdapter(
                 binding.viewmodel = viewModel
                 var isAdded = false
                 binding.imageView.clipToOutline = true
-                // Control display iconFav
-                /*if (viewModel.userId != Constant.BLANK) {
-                    binding.iconFavourite.visibility = View.VISIBLE
-                } else {
-                    binding.iconFavourite.visibility = View.GONE
-                }
-                binding.iconFavourite.setOnClickListener {
-                    if (currentList[position].isFavourite == 0 && !isAdded) {
-                        isAdded = true
-                        binding.iconFavourite.setImageResource(R.drawable.ic_save_active)
-                        viewModel.addFavouriteRequest(viewModel.userId, currentList[position].id)
-                        currentList[position].isFavourite = 1
-                    } else {
-                        isAdded = false
-                        binding.iconFavourite.setImageResource(R.drawable.ic_save)
-                        viewModel.removeFavouriteRequest(viewModel.userId, currentList[position].id)
-                        currentList[position].isFavourite = 0
-                    }
-                    onClickFav(isAdded)
-                }*/
-
                 binding.itemTitle.text = getItem(position).name.trim() + " " + getItem(position).memory
                 binding.itemMemory.text = getItem(position).memory //hiden
                 binding.itemStatus.text = getItem(position).status
@@ -122,30 +106,14 @@ class FoneHouseListAdapter(
         }
     }
 
-    /**
-     * Return network state status if have more row
-     *
-     * @return
-     */
     private fun hasExtraRow(): Boolean {
         return networkState != null && networkState != NetworkState.LOADED
     }
 
-    /**
-     * Get item count
-     *
-     * @return items count
-     */
     override fun getItemCount(): Int {
         return super.getItemCount() + if (hasExtraRow()) 1 else 0
     }
 
-    /**
-     * Get view type
-     *
-     * @param position
-     * @return network/item type
-     */
     override fun getItemViewType(position: Int): Int {
         return if (hasExtraRow() && position == itemCount - 1) {
             Constant.NETWORK_ITEM_TYPE
@@ -154,11 +122,6 @@ class FoneHouseListAdapter(
         }
     }
 
-    /**
-     * Handle network state with whole screen progressBar
-     *
-     * @param newNetworkState
-     */
     fun setNetworkState(newNetworkState: NetworkState) {
         val previousState = this.networkState
         val hadExtraRow = hasExtraRow()
@@ -174,4 +137,62 @@ class FoneHouseListAdapter(
             notifyItemChanged(itemCount - 1)
         }
     }
+
+    var listPhones  =  ArrayList<Fone>()
+    var listPhonesSearch =  ArrayList<Fone>()
+    var mfilter : NewFilter
+
+    init {
+        mfilter = NewFilter(this@FoneHouseListAdapter)
+    }
+
+    fun setList( phones: ArrayList<Fone>){
+        listPhones.clear()
+        listPhones.addAll(phones)
+        notifyDataSetChanged()
+    }
+
+    override fun getFilter(): Filter {
+        return mfilter
+    }
+
+    inner class NewFilter(var mAdapter: FoneHouseListAdapter) : Filter() {
+        override fun performFiltering(charSequence: CharSequence): FilterResults {
+            listPhonesSearch!!.clear()
+
+            val results = FilterResults()
+
+            if (charSequence.isEmpty()) {
+                listPhonesSearch!!.addAll(listPhones!!)
+                DebugLog.e("search all: $charSequence")
+            }
+            else {
+                val filterPattern = charSequence.toString().toLowerCase().trim { it <= ' ' }
+
+                for (phone in listPhones!!) {
+                    DebugLog.e("co search: $phone")
+                    if (phone.name.toLowerCase().startsWith(filterPattern)) {
+                        listPhonesSearch!!.add(phone)
+                        DebugLog.e("ten tu search: $charSequence")
+                        DebugLog.e("ten dien thoại: ${phone.name}")
+                    }
+                }
+            }
+
+            results.values = listPhonesSearch
+            results.count = listPhonesSearch!!.size
+
+            mAdapter.submitList(listPhonesSearch)
+
+            return results
+        }
+
+        override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
+
+            DebugLog.e("danh sach dien thoai search : $charSequence")
+
+            mAdapter.notifyDataSetChanged()
+        }
+    }
+
 }

@@ -2,7 +2,9 @@ package vn.hexagon.vietnhat.ui.list.phone
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -136,6 +138,7 @@ class PhoneListFragment : MVVMBaseFragment<FragmentPhoneListBinding, PostListVie
 
         view?.setOnTouchListener(this)
 
+
         // init adapter
         phoneAdapter = FoneHouseListAdapter(postListViewModel, ::onItemClick)
 //        val filterListAdapter = PhoneFilterAdapter()
@@ -154,6 +157,7 @@ class PhoneListFragment : MVVMBaseFragment<FragmentPhoneListBinding, PostListVie
                 val gridLayoutManager = GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
                 layoutManager = gridLayoutManager
                 adapter = phoneAdapter
+
                 addOnScrollListener(object : EndlessScrollingRecycler(gridLayoutManager) {
                     override fun onLoadMore(numberPost: Int) {
                         DebugLog.e("COCA: $numberPost")
@@ -164,13 +168,16 @@ class PhoneListFragment : MVVMBaseFragment<FragmentPhoneListBinding, PostListVie
                         }
                     }
                 })
+
+
             }
+
+
             rcFilter.apply {
                 setHasFixedSize(true)
                 val linearLayoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 layoutManager = linearLayoutManager
-//                adapter = filterListAdapter
             }
 
             postListViewModel.foneSearchResponse.observe(this, Observer { response ->
@@ -181,32 +188,35 @@ class PhoneListFragment : MVVMBaseFragment<FragmentPhoneListBinding, PostListVie
         }
 
         postListViewModel.foneBrandResponse.observe(this, Observer { response ->
-            //            filterListAdapter.submitList(response.data)
             val phoneFilterAdapter =
                 PhoneFilterAdapter(response.data, context, postListViewModel.repository)
+
             phoneFilterAdapter.setOnPhoneFilterClickListener { brandID, modelID ->
                 postListViewModel.getFilterPhone(brandID, modelID, 0, Constant.SUCCESS_CODE)
             }
+
             rcFilter.adapter = phoneFilterAdapter
         })
 
         // Response data
         postListViewModel.foneListResponse.observe(this, Observer { response ->
-            DebugLog.e("SIZE danh sach dien thoai: ${response.data.size}")
+            DebugLog.e("SIZE: ${response.data.size}")
+
             phoneAdapter!!.submitList(response.data)
+            phoneAdapter!!.setList(response.data)
             getResponse(response)
+
+            searchViewListView!!.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+                override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+                    phoneAdapter!!.filter.filter(charSequence.toString())
+                }
+
+                override fun afterTextChanged(editable: Editable) {}
+            })
+
         })
 
-        // Network response
-        /*postListViewModel.networkState.observe(this, Observer { status ->
-            phoneProgressBarList.visibility =
-                if (postListViewModel.listIsEmpty() && status == NetworkState.LOADING) View.VISIBLE else View.GONE
-            phoneErrMsgList.visibility =
-                if (postListViewModel.listIsEmpty() && status == NetworkState.ERROR) View.VISIBLE else View.GONE
-            if (!postListViewModel.listIsEmpty()) {
-                phoneAdapter.setNetworkState(status)
-            }
-        })*/
     }
 
     /**
