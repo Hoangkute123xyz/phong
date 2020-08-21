@@ -55,7 +55,8 @@ class FoneHouseListAdapter(
                 binding.viewmodel = viewModel
                 var isAdded = false
                 binding.imageView.clipToOutline = true
-                binding.itemTitle.text = getItem(position).name.trim() + " " + getItem(position).memory
+                binding.itemTitle.text =
+                    getItem(position).name.trim() + " " + getItem(position).memory
                 binding.itemMemory.text = getItem(position).memory //hiden
                 binding.itemStatus.text = getItem(position).status
                 binding.itemLastText.text = getItem(position).price
@@ -138,15 +139,15 @@ class FoneHouseListAdapter(
         }
     }
 
-    var listPhones  =  ArrayList<Fone>()
-    var listPhonesSearch =  ArrayList<Fone>()
-    var mfilter : NewFilter
+    var listPhones = ArrayList<Fone>()
+    var listPhonesSearch = ArrayList<Fone>()
+    var mfilter: NewFilter
 
     init {
         mfilter = NewFilter(this@FoneHouseListAdapter)
     }
 
-    fun setList( phones: ArrayList<Fone>){
+    fun setList(phones: ArrayList<Fone>) {
         listPhones.clear()
         listPhones.addAll(phones)
         notifyDataSetChanged()
@@ -164,17 +165,19 @@ class FoneHouseListAdapter(
 
             if (charSequence.isEmpty()) {
                 listPhonesSearch!!.addAll(listPhones!!)
-                DebugLog.e("search all: $charSequence")
-            }
-            else {
+//                DebugLog.e("search all: $charSequence")
+            } else {
                 val filterPattern = charSequence.toString().toLowerCase().trim { it <= ' ' }
 
                 for (phone in listPhones!!) {
                     DebugLog.e("co search: $phone")
-                    if (phone.name.toLowerCase().startsWith(filterPattern)) {
+                    if (phone.name.toLowerCase()
+                            .startsWith(filterPattern) || phone.code.toLowerCase()
+                            .startsWith(filterPattern)
+                    ) {
                         listPhonesSearch!!.add(phone)
-                        DebugLog.e("ten tu search: $charSequence")
-                        DebugLog.e("ten dien thoại: ${phone.name}")
+//                        DebugLog.e("ten tu search: $charSequence")
+//                        DebugLog.e("ten dien thoại: ${phone.name}")
                     }
                 }
             }
