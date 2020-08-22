@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -205,17 +206,25 @@ class CommunityDetailFragment :
             itemAnimator = DefaultItemAnimator()
             chatAdapter = CommunityChatAdapter(userId!!, userImageUrl!!, ::onClickImg)
             adapter = chatAdapter
-
-            addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, oldBottom ->
-//                if (bottom < oldBottom) {
-//                    adapter?.itemCount?.let { pos -> smoothScrollToPosition(pos) }
-//                }
-                try {
+            val timer =object :CountDownTimer(1000L,100L){
+                override fun onFinish() {
                     smoothScrollToPosition(0)
-                } catch (e: Exception) {
-                    e.printStackTrace()
+                }
+
+                override fun onTick(millisUntilFinished: Long) {
                 }
             }
+            timer.start()
+//            addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, oldBottom ->
+////                if (bottom < oldBottom) {
+////                    adapter?.itemCount?.let { pos -> smoothScrollToPosition(pos) }
+////                }
+//                try {
+//                    smoothScrollToPosition(0)
+//                } catch (e: Exception) {
+//                    e.printStackTrace()
+//                }
+//            }
         }
     }
 

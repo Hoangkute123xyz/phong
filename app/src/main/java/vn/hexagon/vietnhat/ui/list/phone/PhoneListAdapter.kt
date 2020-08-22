@@ -16,6 +16,34 @@ import vn.hexagon.vietnhat.databinding.LayoutItemListServicePhoneBinding
 import vn.hexagon.vietnhat.databinding.NetworkStateItemBinding
 import vn.hexagon.vietnhat.ui.list.PostListViewModel
 
+/**
+ *
+//                       _ooOoo_
+//                      o8888888o
+//                      88" . "88
+//                      (| -_- |)
+//                       O\ = /O
+//                   ____/`---'\____
+//                 .   ' \\| |// `.
+//                  / \\||| : |||// \
+//                / _||||| -:- |||||- \
+//                  | | \\\ - /// | |
+//                | \_| ''\---/'' | |
+//                 \ .-\__ `-` ___/-. /
+//              ______`. .' /--.--\ `. . __
+//           ."" '< `.___\_<|>_/___.' >'"".
+//          | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//            \ \ `-. \_ __\ /__ _/ .-` / /
+//    ======`-.____`-.___\_____/___.-`____.-'======
+//                       `=---='
+//
+//    .............................................
+//                    Pray for no Bugs
+ * =====================================================
+ * Name：VuNBT
+ * Create on：2019-09-26
+ * =====================================================
+ */
 class PhoneListAdapter (private val viewModel: PostListViewModel,
                         private val onClick: (String, String) -> Unit,
                         private val onClickFav: (Boolean) -> Unit): BaseAdapter<Post>(ListDiffCallback()) {
@@ -49,7 +77,27 @@ class PhoneListAdapter (private val viewModel: PostListViewModel,
                 binding.viewmodel = viewModel
                 var isAdded = false
                 binding.imageView.clipToOutline = true
-
+                // Control display iconFav
+                /*if (viewModel.userId != Constant.BLANK) {
+                    binding.iconFavourite.visibility = View.VISIBLE
+                } else {
+                    binding.iconFavourite.visibility = View.GONE
+                }
+                binding.iconFavourite.setOnClickListener {
+                    if (currentList[position].isFavourite == 0 && !isAdded) {
+                        isAdded = true
+                        binding.iconFavourite.setImageResource(R.drawable.ic_save_active)
+                        viewModel.addFavouriteRequest(viewModel.userId, currentList[position].id)
+                        currentList[position].isFavourite = 1
+                    } else {
+                        isAdded = false
+                        binding.iconFavourite.setImageResource(R.drawable.ic_save)
+                        viewModel.removeFavouriteRequest(viewModel.userId, currentList[position].id)
+                        currentList[position].isFavourite = 0
+                    }
+                    onClickFav(isAdded)
+                }*/
+                // Handle onClick item
                 binding.phoneListItemArea.setOnClickListener {
                     onClick(getItem(position).userId, getItem(position).id)
                 }

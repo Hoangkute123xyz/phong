@@ -47,7 +47,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_16"
-                    android:layout_marginEnd="@dimen/dp_16"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/input_message_background"
                     android:gravity="top"
@@ -56,8 +56,8 @@
                     android:inputType="textMultiLine"
                     android:lines="3"
                     android:padding="@dimen/dp_10"
-                    app:layout_constraintBottom_toTopOf="@id/cmtSendBtn"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cmtSendBtn"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:ignore="LabelFor" />
@@ -66,7 +66,6 @@
                     android:id="@+id/cmtSendBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp_10"
                     android:background="@drawable/button_indigo_normal_bg"
                     android:drawableStart="@drawable/ic_send_message"
                     android:drawablePadding="@dimen/dp_10"
@@ -76,8 +75,9 @@
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/sp_16"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/cmtContentEd" />
+                    app:layout_constraintBottom_toBottomOf="@+id/cmtContentEd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/cmtContentEd" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

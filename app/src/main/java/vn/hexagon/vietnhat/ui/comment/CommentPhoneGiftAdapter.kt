@@ -28,18 +28,16 @@ class CommentPhoneGiftAdapter(private val phoneGiftViewModel: PhoneGiftViewModel
            false)
     }
 
-    override fun getItemCount(): Int {
-        return 5
-    }
+    override fun getItemCount(): Int =listComment.size
 
     override fun bind(binding: ViewDataBinding, position: Int) {
-        /*when (binding) {
+        when (binding) {
             is ItemGiftCommentBinding -> {
                 binding.position = position
                 binding.viewModel = phoneGiftViewModel
                 binding.imageUserAvatar.clipToOutline = true
             }
-        }*/
+        }
     }
 
     companion object {

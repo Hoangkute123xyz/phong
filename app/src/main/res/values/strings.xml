@@ -284,4 +284,6 @@
     <string name="title_make_messager">Nhắn tin</string>
     <string name="text_how_to_buy">1) Đối với khách hàng ở Osaka hoặc các tỉnh lân cận có thể giao dịch trực tiếp tại cửa hàng Fonehouse.\n<b>Địa chỉ: <font color="#DE608C">大阪府大阪市浪速区日本橋3丁目5-29-２F</font></b>\nHoặc có thể tìm trên bản đồ với từ khóa Fonehouse.\n\n2) Với những khách hàng ở xa hoặc không tới cửa hàng được:\n +) Chuyển tiền trước vào tài khoản ngân hàng của Fonehouse. Sau khi nhận được tiền chúng tôi sẽ tiến hành gửi máy đi. Miễn phí gửi toàn quốc.\n +) Dịch vụ Daibiki thanh toán tại nhà cho nhân viên giao hàng rồi nhận hàng. Phí vận chuyển 1000 Yên.\n\n\t\t<b>Lưu ý:</b> Đối với khách hàng ở vùng Okinawa, Hokkaido hoặc các vùng biển đảo thời gian vận chuyển 3-5 ngày, Phí vận chuyển 1500 Yên. Các vùng còn lại thời gian vận chuyển từ 1-2 ngày.\n\t\t<b>Xin Cảm Ơn Quý Khách Hàng !</b></string>
     <string name="thanks_from_fonehouse">Fonehouse sẽ liên hệ với bạn để gửi hàng cho bạn trong thời gian sớm nhất. Xin chân thành cảm ơn bạn đã sử dụng dịch vụ.</string>
+    <string name="download">Tải xuống</string>
+    <string name="download_image_successfully">Tải ảnh thành công</string>
 </resources>

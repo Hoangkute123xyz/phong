@@ -1,15 +1,19 @@
 package vn.hexagon.vietnhat.ui.comment
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
+import com.google.gson.Gson
 import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.ui.BaseAdapter
 import vn.hexagon.vietnhat.data.model.comment.Comment
 import vn.hexagon.vietnhat.databinding.LayoutCommentRowBinding
 import vn.hexagon.vietnhat.ui.detail.PostDetailViewModel
+import java.util.*
+import kotlin.collections.ArrayList
 
 /*
  * Create by VuNBT on 2019-12-23 
@@ -62,7 +66,7 @@ class CommentListAdapter(private val viewModel: PostDetailViewModel) :
      */
     fun insertList(list: ArrayList<Comment>) {
         comments.clear()
-        comments.addAll(list)
+        comments.addAll(list.reversed())
         notifyDataSetChanged()
     }
 }
