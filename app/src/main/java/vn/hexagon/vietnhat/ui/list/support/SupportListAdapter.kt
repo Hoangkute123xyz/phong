@@ -9,7 +9,6 @@ import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.ui.BaseAdapter
 import vn.hexagon.vietnhat.constant.Constant
 import vn.hexagon.vietnhat.data.model.news.News
-import vn.hexagon.vietnhat.data.model.post.Post
 import vn.hexagon.vietnhat.data.remote.NetworkState
 import vn.hexagon.vietnhat.databinding.LayoutItemListServiceSupportBinding
 import vn.hexagon.vietnhat.databinding.NetworkStateItemBinding

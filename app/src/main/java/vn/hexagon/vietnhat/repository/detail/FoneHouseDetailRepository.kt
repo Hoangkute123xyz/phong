@@ -6,10 +6,7 @@ import vn.hexagon.vietnhat.data.model.chat.CreateGroupResponse
 import vn.hexagon.vietnhat.data.model.chat.ListFriendResponse
 import vn.hexagon.vietnhat.data.model.comment.CommentResponse
 import vn.hexagon.vietnhat.data.model.comment.ListFavoritePhoneResponse
-import vn.hexagon.vietnhat.data.model.fone.BrandResponse
-import vn.hexagon.vietnhat.data.model.fone.FoneDetailResponse
-import vn.hexagon.vietnhat.data.model.fone.ProductModelResponse
-import vn.hexagon.vietnhat.data.model.fone.TimeRangeResponse
+import vn.hexagon.vietnhat.data.model.fone.*
 import vn.hexagon.vietnhat.data.model.gift.PhoneGiftDetailResponse
 import vn.hexagon.vietnhat.data.model.service.ListPostResponse
 import vn.hexagon.vietnhat.data.remote.NetworkService
@@ -76,6 +73,11 @@ class FoneHouseDetailRepository @Inject constructor(private val apiService: Netw
         comment: String
     ): Single<CommentResponse> {
         return apiService.postCommentPhone(user_id, id, comment, type)
+    }
+
+    fun getCommentFoneHouse(
+        producId: String): Single<FoneComment> {
+        return apiService.getCommentFoneHouse(producId)
     }
 
 

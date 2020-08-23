@@ -1,7 +1,6 @@
 package vn.hexagon.vietnhat.ui.chat.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -11,8 +10,6 @@ import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.ui.BaseAdapter
 import vn.hexagon.vietnhat.base.ui.BaseDiffUtil
 import vn.hexagon.vietnhat.data.model.chat.GroupChat
-import vn.hexagon.vietnhat.data.model.remote.ChatList
-import vn.hexagon.vietnhat.databinding.ItemChatListBinding
 import vn.hexagon.vietnhat.databinding.ItemGroupChatListBinding
 
 /**

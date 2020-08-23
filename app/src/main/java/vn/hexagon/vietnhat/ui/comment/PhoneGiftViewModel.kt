@@ -6,6 +6,7 @@ import vn.hexagon.vietnhat.base.utils.DebugLog
 import vn.hexagon.vietnhat.base.utils.addToCompositeDisposable
 import vn.hexagon.vietnhat.base.utils.applyScheduler
 import vn.hexagon.vietnhat.data.model.comment.ListFavoritePhoneResponse
+import vn.hexagon.vietnhat.data.model.fone.FoneComment
 import vn.hexagon.vietnhat.data.remote.NetworkState
 import vn.hexagon.vietnhat.repository.detail.FoneHouseDetailRepository
 import javax.inject.Inject
@@ -15,6 +16,7 @@ class PhoneGiftViewModel @Inject constructor(private val repository: FoneHouseDe
 
 
     var listFavoritePhoneResponse = MutableLiveData<ListFavoritePhoneResponse>()
+    var listFoneHouseCommentResponse = MutableLiveData<FoneComment>()
 
     fun getPhoneGiftComment(giftID: String?) {
 
@@ -24,8 +26,10 @@ class PhoneGiftViewModel @Inject constructor(private val repository: FoneHouseDe
 
     }
 
-    fun getPhoneHouseComment(phoneID: String?) {
-
+    fun getPhoneHouseComment(phoneID: String) {
+        repository.getCommentFoneHouse(phoneID).applyScheduler().subscribe({response->
+            listFoneHouseCommentResponse.postValue(response)
+        },{throwable-> throwable.printStackTrace()}).addToCompositeDisposable(compositeDisposable)
     }
 
     fun getPhoneHouseFavorite(phoneID: String?) {

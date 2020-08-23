@@ -7,11 +7,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.ui.BaseAdapter
-import vn.hexagon.vietnhat.data.model.comment.Comment
 import vn.hexagon.vietnhat.data.model.comment.GiftCommentItem
 import vn.hexagon.vietnhat.databinding.ItemGiftCommentBinding
-import vn.hexagon.vietnhat.databinding.LayoutCommentRowBinding
-import java.util.*
 import kotlin.collections.ArrayList
 
 class CommentPhoneGiftAdapter(private val phoneGiftViewModel: PhoneGiftViewModel) :

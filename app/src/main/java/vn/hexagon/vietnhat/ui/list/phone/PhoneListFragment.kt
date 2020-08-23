@@ -2,7 +2,9 @@ package vn.hexagon.vietnhat.ui.list.phone
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -29,34 +31,6 @@ import vn.hexagon.vietnhat.ui.dialog.search.DialogSearchClickListener
 import vn.hexagon.vietnhat.ui.list.PostListViewModel
 import javax.inject.Inject
 
-/**
- *
-//                       _ooOoo_
-//                      o8888888o
-//                      88" . "88
-//                      (| -_- |)
-//                       O\ = /O
-//                   ____/`---'\____
-//                 .   ' \\| |// `.
-//                  / \\||| : |||// \
-//                / _||||| -:- |||||- \
-//                  | | \\\ - /// | |
-//                | \_| ''\---/'' | |
-//                 \ .-\__ `-` ___/-. /
-//              ______`. .' /--.--\ `. . __
-//           ."" '< `.___\_<|>_/___.' >'"".
-//          | | : `- \`.;`\ _ /`;.`/ - ` : | |
-//            \ \ `-. \_ __\ /__ _/ .-` / /
-//    ======`-.____`-.___\_____/___.-`____.-'======
-//                       `=---='
-//
-//    .............................................
-//                    Pray for no Bugs
- * =====================================================
- * Name：VuNBT
- * Create on：2019-09-26
- * =====================================================
- */
 class PhoneListFragment : MVVMBaseFragment<FragmentPhoneListBinding, PostListViewModel>(),
     DialogSearchClickListener, View.OnTouchListener {
     // View model
@@ -192,9 +166,19 @@ class PhoneListFragment : MVVMBaseFragment<FragmentPhoneListBinding, PostListVie
 
         // Response data
         postListViewModel.foneListResponse.observe(this, Observer { response ->
-            DebugLog.e("SIZE danh sach dien thoai: ${response.data.size}")
             phoneAdapter!!.submitList(response.data)
+            phoneAdapter!!.setList(response.data)
             getResponse(response)
+
+            searchViewListView!!.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+                override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+                    phoneAdapter!!.filter.filter(charSequence.toString())
+                }
+
+                override fun afterTextChanged(editable: Editable) {}
+            })
+
         })
 
         // Network response

@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:background="#222222">
 
-        <vn.hexagon.vietnhat.ui.zoom.CustomViewPager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/zoomPager"
             android:layout_width="0dp"
             android:layout_height="0dp"

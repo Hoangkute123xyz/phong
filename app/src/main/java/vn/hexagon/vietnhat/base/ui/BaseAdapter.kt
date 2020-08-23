@@ -31,6 +31,6 @@ abstract class BaseAdapter<T>(callback: DiffUtil.ItemCallback<T>) :
   //  protected abstract fun bind(binding: ViewDataBinding, item: T)
 
   protected fun setList(list: List<T>) {
-    submitList(list)
+    submitList(list.reversed())
   }
 }

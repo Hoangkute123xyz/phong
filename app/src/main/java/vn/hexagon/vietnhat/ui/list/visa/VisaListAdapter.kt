@@ -13,7 +13,6 @@ import vn.hexagon.vietnhat.base.ui.BaseAdapter
 import vn.hexagon.vietnhat.constant.Constant
 import vn.hexagon.vietnhat.data.model.post.Post
 import vn.hexagon.vietnhat.data.remote.NetworkState
-import vn.hexagon.vietnhat.databinding.LayoutItemListServiceCarBinding
 import vn.hexagon.vietnhat.databinding.LayoutItemListServiceVisaBinding
 import vn.hexagon.vietnhat.databinding.NetworkStateItemBinding
 import vn.hexagon.vietnhat.ui.list.PostListViewModel

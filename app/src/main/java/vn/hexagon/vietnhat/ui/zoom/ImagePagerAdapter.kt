@@ -13,14 +13,12 @@ import vn.hexagon.vietnhat.R
  * Create by VuNBT on 2020-01-09 
  */
 class ImagePagerAdapter(private val context: Context,
-                        private val imageList: ArrayList<String>): PagerAdapter() {
+                        private val url: String): PagerAdapter() {
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view == `object`
     }
 
-    override fun getCount(): Int {
-        return imageList.size ?: 0
-    }
+    override fun getCount(): Int=1
 
     override fun getItemPosition(`object`: Any): Int {
         return POSITION_NONE
@@ -29,7 +27,7 @@ class ImagePagerAdapter(private val context: Context,
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val photoView = PhotoView(container.context)
         Glide.with(context)
-            .load(imageList[position])
+            .load(url)
             .fitCenter()
             .placeholder(R.drawable.img_guide)
             .into(photoView)

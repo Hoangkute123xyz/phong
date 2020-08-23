@@ -2,7 +2,6 @@ package vn.hexagon.vietnhat.ui.list.translator
 
 import android.graphics.Typeface
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil

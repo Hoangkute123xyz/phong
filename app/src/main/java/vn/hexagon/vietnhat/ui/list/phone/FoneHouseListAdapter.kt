@@ -4,6 +4,8 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
@@ -20,7 +22,7 @@ import vn.hexagon.vietnhat.ui.list.PostListViewModel
 class FoneHouseListAdapter(
     private val viewModel: PostListViewModel,
     private val onClick: (String, String) -> Unit
-) : BaseAdapter<Fone>(ListDiffCallback()) {
+) : BaseAdapter<Fone>(ListDiffCallback()), Filterable {
 
     // Network state
     private var networkState: NetworkState? = null
@@ -71,7 +73,8 @@ class FoneHouseListAdapter(
                     onClickFav(isAdded)
                 }*/
 
-                binding.itemTitle.text = getItem(position).name.trim() + " " + getItem(position).memory
+                binding.itemTitle.text =
+                    getItem(position).name.trim() + " " + getItem(position).memory
                 binding.itemMemory.text = getItem(position).memory //hiden
                 binding.itemStatus.text = getItem(position).status
                 binding.itemLastText.text = getItem(position).price
@@ -122,30 +125,14 @@ class FoneHouseListAdapter(
         }
     }
 
-    /**
-     * Return network state status if have more row
-     *
-     * @return
-     */
     private fun hasExtraRow(): Boolean {
         return networkState != null && networkState != NetworkState.LOADED
     }
 
-    /**
-     * Get item count
-     *
-     * @return items count
-     */
     override fun getItemCount(): Int {
         return super.getItemCount() + if (hasExtraRow()) 1 else 0
     }
 
-    /**
-     * Get view type
-     *
-     * @param position
-     * @return network/item type
-     */
     override fun getItemViewType(position: Int): Int {
         return if (hasExtraRow() && position == itemCount - 1) {
             Constant.NETWORK_ITEM_TYPE
@@ -154,11 +141,6 @@ class FoneHouseListAdapter(
         }
     }
 
-    /**
-     * Handle network state with whole screen progressBar
-     *
-     * @param newNetworkState
-     */
     fun setNetworkState(newNetworkState: NetworkState) {
         val previousState = this.networkState
         val hadExtraRow = hasExtraRow()
@@ -174,4 +156,57 @@ class FoneHouseListAdapter(
             notifyItemChanged(itemCount - 1)
         }
     }
+
+    var listPhones = ArrayList<Fone>()
+    var listPhonesSearch = ArrayList<Fone>()
+    var mfilter: NewFilter
+
+    init {
+        mfilter = NewFilter(this@FoneHouseListAdapter)
+    }
+
+    fun setList(phones: ArrayList<Fone>) {
+        listPhones.clear()
+        listPhones.addAll(phones)
+        notifyDataSetChanged()
+    }
+
+    override fun getFilter(): Filter {
+        return mfilter
+    }
+
+    inner class NewFilter(var mAdapter: FoneHouseListAdapter) : Filter() {
+        override fun performFiltering(charSequence: CharSequence): FilterResults {
+            listPhonesSearch.clear()
+
+            val results = FilterResults()
+
+            if (charSequence.isEmpty()) {
+                listPhonesSearch.addAll(listPhones)
+            } else {
+                val filterPattern = charSequence.toString().toLowerCase().trim { it <= ' ' }
+
+                for (phone in listPhones) {
+                    if (phone.name.toLowerCase()
+                            .startsWith(filterPattern) || phone.code.toLowerCase()
+                            .startsWith(filterPattern)
+                    ) {
+                        listPhonesSearch.add(phone)
+                    }
+                }
+            }
+
+            results.values = listPhonesSearch
+            results.count = listPhonesSearch.size
+
+            mAdapter.submitList(listPhonesSearch)
+
+            return results
+        }
+
+        override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
+            mAdapter.notifyDataSetChanged()
+        }
+    }
+
 }

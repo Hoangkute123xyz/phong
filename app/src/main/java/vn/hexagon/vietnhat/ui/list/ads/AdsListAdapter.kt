@@ -1,30 +1,23 @@
 package vn.hexagon.vietnhat.ui.list.ads
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.Typeface
-import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.ui.BaseAdapter
-import vn.hexagon.vietnhat.base.utils.DebugLog
 import vn.hexagon.vietnhat.constant.Constant
 import vn.hexagon.vietnhat.data.model.post.Post
 import vn.hexagon.vietnhat.data.remote.NetworkState
 import vn.hexagon.vietnhat.databinding.LayoutItemListServiceAdsBinding
-import vn.hexagon.vietnhat.databinding.LayoutItemListServiceCarBinding
 import vn.hexagon.vietnhat.databinding.NetworkStateItemBinding
 import vn.hexagon.vietnhat.ui.list.PostListViewModel
 import vn.hexagon.vietnhat.ui.list.WindyConvertUtil
-import java.lang.NumberFormatException
-import javax.inject.Inject
 
 /**
  *

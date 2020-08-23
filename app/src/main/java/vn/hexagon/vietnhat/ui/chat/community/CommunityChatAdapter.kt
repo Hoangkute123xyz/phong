@@ -33,6 +33,10 @@ class CommunityChatAdapter(
         this.chatDetail = chatDetail
         chatContent = chatDetail.data
         submitList(chatContent)
+        imgList.clear()
+        for (img in chatContent){
+            imgList.add(img.content)
+        }
         notifyDataSetChanged()
     }
 
@@ -91,8 +95,6 @@ class CommunityChatAdapter(
                             .error(R.drawable.ic_chat_image)
                             .apply(RequestOptions.fitCenterTransform())
                             .into(binding.imageContent)
-                        imgList.clear()
-                        imgList.add(item.content)
                         binding.imageContent.setOnClickListener {
                             onClickImg(imgList, position)
                         }
@@ -122,9 +124,6 @@ class CommunityChatAdapter(
                             .error(R.drawable.ic_chat_image)
                             .apply(RequestOptions.fitCenterTransform())
                             .into(binding.imageContent)
-
-                        imgList.clear()
-                        imgList.add(item.content)
                         binding.imageContent.setOnClickListener {
                             onClickImg(imgList, position)
                         }

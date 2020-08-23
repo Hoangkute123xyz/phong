@@ -10,10 +10,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.ui.BaseAdapter
-import vn.hexagon.vietnhat.data.model.comment.GiftFavouriteItem
 import vn.hexagon.vietnhat.data.model.comment.ItemFavoritePhone
 import vn.hexagon.vietnhat.databinding.ItemGiftFavouriteBinding
-import vn.hexagon.vietnhat.ui.comment.PhoneGiftViewModel
 
 class GiftFavouriteAdapter() :
     BaseAdapter<ItemFavoritePhone>(ListDiffCallback()) {

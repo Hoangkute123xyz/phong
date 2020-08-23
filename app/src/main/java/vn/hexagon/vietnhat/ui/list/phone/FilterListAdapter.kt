@@ -16,7 +16,6 @@ import vn.hexagon.vietnhat.base.ui.BaseAdapter
 import vn.hexagon.vietnhat.base.utils.applyScheduler
 import vn.hexagon.vietnhat.constant.Constant
 import vn.hexagon.vietnhat.data.model.fone.Brand
-import vn.hexagon.vietnhat.data.remote.NetworkState
 import vn.hexagon.vietnhat.databinding.ItemFoneFilterBinding
 import vn.hexagon.vietnhat.repository.list.PostListRepository
 

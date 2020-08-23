@@ -1,7 +1,6 @@
 package vn.hexagon.vietnhat.ui.list.phone
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -11,7 +10,6 @@ import vn.hexagon.vietnhat.base.ui.BaseAdapter
 import vn.hexagon.vietnhat.constant.Constant
 import vn.hexagon.vietnhat.data.model.post.Post
 import vn.hexagon.vietnhat.data.remote.NetworkState
-import vn.hexagon.vietnhat.databinding.LayoutItemListServiceCarBinding
 import vn.hexagon.vietnhat.databinding.LayoutItemListServicePhoneBinding
 import vn.hexagon.vietnhat.databinding.NetworkStateItemBinding
 import vn.hexagon.vietnhat.ui.list.PostListViewModel

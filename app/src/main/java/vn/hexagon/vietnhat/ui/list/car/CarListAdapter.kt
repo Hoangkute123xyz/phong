@@ -10,7 +10,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.ui.BaseAdapter
-import vn.hexagon.vietnhat.base.utils.Utils
 import vn.hexagon.vietnhat.constant.Constant
 import vn.hexagon.vietnhat.data.model.post.Post
 import vn.hexagon.vietnhat.data.remote.NetworkState

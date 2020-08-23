@@ -1,15 +1,11 @@
 package vn.hexagon.vietnhat.ui.zoom
 
-import android.media.Image
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.action_bar_base.view.*
 import kotlinx.android.synthetic.main.fragment_zoom.*
 import kotlinx.coroutines.*
@@ -25,24 +21,26 @@ import vn.hexagon.vietnhat.ui.detail.PostDetailViewModel
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
-import kotlin.collections.ArrayList
 
 /*
  * Create by VuNBT on 2019-12-25 
  */
-class ZoomFragment: MVVMBaseFragment<FragmentZoomBinding, PostDetailViewModel>() {
+class ZoomFragment : MVVMBaseFragment<FragmentZoomBinding, PostDetailViewModel>() {
     // View model
     private lateinit var viewModel: PostDetailViewModel
+
     // Array Image
-    private var mListImage =  ArrayList<String>()
+    private var url = ""
+
     // Position image pager selected by user
     private var mPosition = -1
+
     // Action bar
     private val actionBar: SimpleActionBar? by lazy {
         baseActionBar as? SimpleActionBar
     }
 
-    private lateinit var scope:CoroutineScope
+    private lateinit var scope: CoroutineScope
 
     override fun getBaseViewModel(): PostDetailViewModel {
         viewModel = ViewModelProviders.of(this, viewModelFactory)[PostDetailViewModel::class.java]
@@ -72,21 +70,18 @@ class ZoomFragment: MVVMBaseFragment<FragmentZoomBinding, PostDetailViewModel>()
             }
         }
         arguments?.let {
-            mListImage.addAll(ZoomFragmentArgs.fromBundle(it).uri)
+            url=ZoomFragmentArgs.fromBundle(it).uri[0]
             mPosition = ZoomFragmentArgs.fromBundle(it).pos
         }
         activity?.let { context ->
-            DebugLog.e("${mListImage.size}")
-            val imgAdapter = ImagePagerAdapter(context, mListImage)
+            val imgAdapter = ImagePagerAdapter(context,url)
             zoomPager.adapter = imgAdapter
-            zoomPager.currentItem = mPosition
-            zoomPager.offscreenPageLimit = 0
             tvDownload.setOnClickListener {
-                Log.e("dl","clicked")
                 scope.launch {
                     val responseAsync = async {
                         val client = OkHttpClient.Builder().build()
-                        val request = Request.Builder().url(mListImage[zoomPager.currentItem]).get().build()
+                        val request =
+                            Request.Builder().url(url).get().build()
                         return@async client.newCall(request).execute()
                     }
                     val response = responseAsync.await()
@@ -103,24 +98,30 @@ class ZoomFragment: MVVMBaseFragment<FragmentZoomBinding, PostDetailViewModel>()
         val file = File(dir.absolutePath, "IMG_${System.currentTimeMillis()}.jpg")
         val output = FileOutputStream(file)
         output.use { output ->
-            val buffer = ByteArray(2024*4)
+            val buffer = ByteArray(2024 * 4)
             var read = input.read(buffer)
-            var data=read
+            var data = read
             while (read != -1) {
                 output.write(buffer, 0, read)
-                data+=read
+                data += read
                 read = input.read(buffer)
             }
-            withContext(Dispatchers.Main){
-                Toast.makeText(requireContext(),R.string.download_image_successfully,Toast.LENGTH_SHORT).show()
+            withContext(Dispatchers.Main) {
+                Toast.makeText(
+                    requireContext(),
+                    R.string.download_image_successfully,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             output.flush()
         }
     }
+
     override fun onDestroy() {
         scope.cancel()
         super.onDestroy()
     }
+
     override fun initAction() {
     }
 

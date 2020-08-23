@@ -483,5 +483,6 @@ interface NetworkService {
         @Field("group_id") groupID: String
     ): Single<CreateGroupResponse>
 
-
+    @GET("list_comment.php")
+    fun getCommentFoneHouse(@Query("product_id") productId:String):Single<FoneComment>
 }

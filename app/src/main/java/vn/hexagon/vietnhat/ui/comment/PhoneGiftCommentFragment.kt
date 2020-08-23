@@ -1,5 +1,6 @@
 package vn.hexagon.vietnhat.ui.comment
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
@@ -43,8 +44,7 @@ class PhoneGiftCommentFragment :
     //Vertical layout manager
     var linearLayoutManager: LinearLayoutManager? = null
 
-    @Inject
-    lateinit var sharedPreferences: SharedPreferences
+    lateinit var preferences: SharedPreferences
 
     override fun getBaseViewModel(): PhoneGiftViewModel {
         phoneGiftViewModel =
@@ -55,6 +55,7 @@ class PhoneGiftCommentFragment :
     override fun getBindingVariable(): Int = BR.viewmodel
 
     override fun initData(argument: Bundle?) {
+        preferences = requireContext().getSharedPreferences("userLocal",Context.MODE_PRIVATE)
         argument?.let {
             giftID = PhoneGiftCommentFragmentArgs.fromBundle(it).id
             type = PhoneGiftCommentFragmentArgs.fromBundle(it).type
@@ -71,21 +72,27 @@ class PhoneGiftCommentFragment :
                     commentRecyclerView.adapter = commentAdapter
                     tvSendBtn.setOnClickListener {
                         editContent.text?.let {
-                            phoneGiftViewModel.postCommentPhoneGift( it.toString(),giftID!!,"129")
+                            phoneGiftViewModel.postCommentPhoneGift( it.toString(),giftID!!,preferences.getInt("user_id",-1).toString())
                         }
                     }
                 }
 
                 "TYPE_PHONE_HOUSE_COMMENT" -> {
                     actionBar?.simpleTitleText = "Bình luận"
-                    phoneGiftViewModel.getPhoneHouseComment(giftID)
+                    phoneGiftViewModel.getPhoneHouseComment(giftID?:"")
                     tvSendBtn.visibility = View.VISIBLE
                     editContent.visibility = View.VISIBLE
-                    commentAdapter = CommentPhoneGiftAdapter(phoneGiftViewModel)
+                    val commentAdapter = CommentFoneHouseAdapter(phoneGiftViewModel,requireContext())
                     commentRecyclerView.adapter = commentAdapter
+                    commentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+                    phoneGiftViewModel.listFoneHouseCommentResponse.observe(this, Observer {
+                        commentAdapter.notifyDataSetChanged()
+                    })
                     tvSendBtn.setOnClickListener {
-                        editContent.text?.let {
-                            phoneGiftViewModel.postCommentPhoneHouse(it.toString(),giftID!!,"129")
+                        editContent.text?.let {text->
+                            if (text.isEmpty()) return@setOnClickListener
+                            editContent.setText("")
+                            phoneGiftViewModel.postCommentPhoneHouse(text.toString(),giftID?:"",preferences.getString("user_id","")?:"")
                         }
                     }
                 }

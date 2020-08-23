@@ -9,7 +9,6 @@ import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.ui.BaseAdapter
 import vn.hexagon.vietnhat.base.utils.DebugLog
 import vn.hexagon.vietnhat.data.model.guide.Guide
-import vn.hexagon.vietnhat.data.model.post.Post
 import vn.hexagon.vietnhat.databinding.ItemGuideLayoutBinding
 
 /**

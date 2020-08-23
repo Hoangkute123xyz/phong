@@ -1,7 +1,6 @@
 package vn.hexagon.vietnhat.ui.list.news
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -10,7 +9,6 @@ import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.ui.BaseAdapter
 import vn.hexagon.vietnhat.constant.Constant
 import vn.hexagon.vietnhat.data.model.news.News
-import vn.hexagon.vietnhat.data.model.post.Post
 import vn.hexagon.vietnhat.data.remote.NetworkState
 import vn.hexagon.vietnhat.databinding.LayoutItemListServiceNewBinding
 import vn.hexagon.vietnhat.databinding.NetworkStateItemBinding

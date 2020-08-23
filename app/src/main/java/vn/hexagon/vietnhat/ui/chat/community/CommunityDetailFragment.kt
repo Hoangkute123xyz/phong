@@ -116,12 +116,11 @@ class CommunityDetailFragment :
     }
 
     fun onClickImg(list: ArrayList<String>, position: Int) {
-        val listImg = arrayOfNulls<String>(list.size)
-        list.toArray(listImg)
+        val url = list[position]
 
         val action =
             CommunityDetailFragmentDirections.actionCommunityDetailFragmentToZoomFragment(
-                listImg,
+                arrayOf(url),
                 position
             )
         findNavController().navigate(action)

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.ui.BaseAdapter
 import vn.hexagon.vietnhat.data.model.comment.Comment
-import vn.hexagon.vietnhat.databinding.LayoutCommentRowBinding
 import vn.hexagon.vietnhat.databinding.LayoutLikedMeberRowBinding
 import vn.hexagon.vietnhat.ui.detail.PostDetailViewModel
 
