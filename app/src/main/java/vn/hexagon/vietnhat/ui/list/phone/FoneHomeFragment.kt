@@ -4,20 +4,16 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.action_bar_base.view.*
 import kotlinx.android.synthetic.main.fragment_fone_home.*
-import kotlinx.android.synthetic.main.fragment_news_list.*
 import kotlinx.android.synthetic.main.fragment_phone_list.*
-import kotlinx.android.synthetic.main.fragment_phone_list.phoneListRefresher
 import vn.hexagon.vietnhat.BR
 import vn.hexagon.vietnhat.R
 import vn.hexagon.vietnhat.base.mvvm.MVVMBaseFragment
@@ -26,12 +22,10 @@ import vn.hexagon.vietnhat.base.utils.DebugLog
 import vn.hexagon.vietnhat.base.view.EndlessScrollingRecycler
 import vn.hexagon.vietnhat.constant.Constant
 import vn.hexagon.vietnhat.data.model.fone.ListFoneHouseResponse
-import vn.hexagon.vietnhat.data.model.service.ListPostResponse
 import vn.hexagon.vietnhat.databinding.FragmentFoneHomeBinding
-import vn.hexagon.vietnhat.ui.chat.community.CommunityDetailFragmentDirections
 import vn.hexagon.vietnhat.ui.dialog.search.DialogSearchClickListener
 import vn.hexagon.vietnhat.ui.list.PostListViewModel
-import java.util.ArrayList
+import java.util.*
 import javax.inject.Inject
 
 class FoneHomeFragment : MVVMBaseFragment<FragmentFoneHomeBinding, PostListViewModel>(),
@@ -253,16 +247,10 @@ class FoneHomeFragment : MVVMBaseFragment<FragmentFoneHomeBinding, PostListViewM
      */
     private fun onItemClick(userId: String, postId: String) {
 
-        Toast.makeText(context, "Xem chi tiết ở danh sách sản phẩm!", Toast.LENGTH_LONG).show()
-//        val action =
-//            FoneHomeFragmentDirections.actionFoneHomeFragmentToPostDetailFragment(userId, postId)
-//        findNavController().navigate(action)
-
-//        var action = PhoneListFragmentDirections.actionPhoneListFragmentToFoneHouseDetailFragment(
-//            userId,
-//            postId
-//        )
-//        findNavController().navigate(action)
+//        Toast.makeText(context, "Xem chi tiết ở danh sách sản phẩm!", Toast.LENGTH_LONG).show()
+        val action =
+            FoneHomeFragmentDirections.actionFoneHomeFragmentToFoneHouseDetailFragment(userId, postId)
+        findNavController().navigate(action)
     }
 
     private fun searchData(productID: String, modelID: String, numberPost: Int) {

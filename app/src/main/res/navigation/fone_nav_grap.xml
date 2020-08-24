@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_foneHomeFragment_to_zoomFragment"
             app:destination="@id/zoomFragment" />
+        <action
+            android:id="@+id/action_foneHomeFragment_to_foneHouseDetailFragment"
+            app:destination="@+id/foneHouseDetailFragment"/>
     </fragment>
 
     <fragment
